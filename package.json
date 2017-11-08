@@ -1,0 +1,93 @@
+{
+  "name": "vue-preboot",
+  "version": "1.0.0",
+  "description": "A teeny Vue.js template to get your next project booted. It is opinionated and powered by Webpack.",
+  "keywords": [
+    "vue",
+    "webpack",
+    "typescript"
+  ],
+  "author": {
+    "name": "Sebastian Döll",
+    "email": "sebastian@katallaxie.me"
+  },
+  "homepage": "https://github.com/katallaxie/vue-preboot",
+  "license": "MIT",
+  "scripts": {
+    "server:dev": "cross-env NODE_ENV=development npm run webpack-dev-server --open --progress --profile --watch",
+    "server": "npm run server:dev",
+    "start": "npm run server:dev",
+    "webpack-dev-server": "webpack-dev-server",
+    "webpack": "webpack"
+  },
+  "dependencies": {
+    "core-js": "^2.5.1",
+    "vue": "^2.5.2",
+    "vue-class-component": "^6.1.0",
+    "vue-property-decorator": "^6.0.0",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/hammerjs": "^2.0.35",
+    "@types/node": "^8.0.49",
+    "@types/source-map": "^0.5.2",
+    "@types/uglify-js": "^2.6.29",
+    "@types/vue": "^2.0.0",
+    "autodll-webpack-plugin": "^0.3.3",
+    "autoprefixer": "^7.1.6",
+    "awesome-typescript-loader": "^3.3.0",
+    "babel-core": "^6.26.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-preset-env": "^1.6.1",
+    "brotli-webpack-plugin": "^0.4.3",
+    "compression-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^4.2.0",
+    "cross-env": "^5.1.1",
+    "css-loader": "^0.28.1",
+    "cssnano": "^3.10.0",
+    "html-elements-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.30.1",
+    "optimize-js-plugin": "0.0.4",
+    "prettier": "^1.6.1",
+    "script-ext-html-webpack-plugin": "^1.8.8",
+    "ts-loader": "^3.1.1",
+    "ts-node": "^3.3.0",
+    "tslib": "^1.5.0",
+    "tslint": "^5.7.0",
+    "tslint-config-prettier": "^1.5.0",
+    "tslint-loader": "^3.5.1",
+    "typescript": "2.4.2",
+    "typestyle": "^1.5.1",
+    "vue-loader": "^13.4.0",
+    "vue-template-compiler": "^2.5.3",
+    "webpack": "3.8.1",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-dev-server": "^2.9.3",
+    "webpack-merge": "^4.1.1"
+  },
+  "bundlesize": [
+    {
+      "path": "./public/vendor.*.js",
+      "maxSize": "400 kB"
+    },
+    {
+      "path": "./public/polyfills.*.js",
+      "maxSize": "120 kB"
+    }
+  ],
+  "jest": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katallaxie/angular-preboot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/katallaxie/angular-preboot/issues"
+  },
+  "engines": {
+    "node": ">= 6.9.1",
+    "npm": ">= 3"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "noEmit": false,
+    "noEmitHelpers": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictNullChecks": false,
+    "target": "es5",
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "es5",
+      "es6"
+    ],
+    "types": [
+      "hammerjs",
+      "node",
+      "source-map",
+      "uglify-js"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "public",
+    "src/**/*.spec.ts",
+    "src/**/*.e2e.ts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}
