@@ -16,13 +16,10 @@
 * [@types](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjgjdrR7u_NAhUQ7GMKHXgpC4EQFggnMAI&url=https%3A%2F%2Fwww.npmjs.com%2F~types&usg=AFQjCNG2PFhwEo88JKo12mrw_4d0w1oNiA&sig2=N69zbO0yN8ET7v4KVCUOKA)
 * [TsLint](http://palantir.github.io/tslint/)
 * [PostCss](https://github.com/postcss/postcss) + [Autoprefixer](https://github.com/postcss/autoprefixer)
-* [Istanbul](https://github.com/gotwarlost/istanbul)
 * [Jest](https://facebook.github.io/jest)
-* [Protractor](https://angular.github.io/protractor/)
-* [Jasmine](https://github.com/jasmine/jasmine)
-* [E2E](https://angular.github.io/protractor/#/faq#what-s-the-difference-between-karma-and-protractor-when-do-i-use-which-)
 * [Docker](https://docker.io)
 * [Prettier](https://github.com/prettier/prettier)
+* Offline Support (PWA)
 
 ## Quick Start
 
