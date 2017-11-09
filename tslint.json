@@ -5,6 +5,7 @@
   ],
   "rules": {
     // General
+    "no-var-requires": false,
     "no-console": [
       true,
       "time",

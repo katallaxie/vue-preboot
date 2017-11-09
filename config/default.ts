@@ -24,6 +24,10 @@ import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin';
 import * as Autoprefixer from 'autoprefixer';
 import * as CssNano from 'cssnano';
 
+// pws
+import * as OfflinePlugin from 'offline-plugin';
+import * as ManifestPlugin from 'webpack-manifest-plugin';
+
 import { CustomHeadTags, CustomCopyFolders } from './custom';
 
 // copy
@@ -155,7 +159,7 @@ export const DefaultDevConfig = (): DefaultConfig => {
 
 export const DefaultProdConfig = (): DefaultConfig => {
   return {
-    rules: [],
+    rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
     plugins: [
       new OptimizeJsPlugin({
         sourceMap: false
@@ -221,6 +225,18 @@ export const DefaultProdConfig = (): DefaultConfig => {
         },
         mangle: {
           screw_ie8: true
+        }
+      }),
+      new ManifestPlugin(),
+      new OfflinePlugin({
+        relativePaths: false,
+        ServiceWorker: {
+          events: true,
+          navigateFallbackURL: '/'
+        },
+        AppCache: {
+          events: true,
+          FALLBACK: { '/': '/' }
         }
       })
     ]

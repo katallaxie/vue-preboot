@@ -134,11 +134,17 @@ const prodConfig = () => {
     rules: [...DefaultProdConfig().rules, ...CustomProdConfig.rules]
   };
 
+  config.entry = {
+    main: './src/browser',
+    polyfills: polyfills()
+  };
+
   config.performance = {
     hints: 'warning'
   };
 
   config.output = {
+    publicPath: '/',
     path: root(`public`),
     filename: '[name].[chunkhash].bundle.js',
     sourceMapFilename: '[name].[chunkhash].bundle.map',
