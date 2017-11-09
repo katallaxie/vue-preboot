@@ -1,8 +1,8 @@
-import Vue from 'vue';
+import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component
-export class App extends Vue {
+export default class App extends Vue {
   public message = ''
 
   public created() {

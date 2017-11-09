@@ -1,7 +1,6 @@
 /*** DO NOT TOUCH ***/
 import { root } from './helpers';
 import {
-  ContextReplacementPlugin,
   DefinePlugin,
   ProgressPlugin
 } from 'webpack';
@@ -36,17 +35,10 @@ export const DefaultCopyFolders = [
 // dll's
 import { polyfills, vendor } from './dll';
 
-// sourcemaps
-export const ExcludeSourceMaps = [
-  // these packages have problems with their sourcemaps
-  root('node_modules/@angular'),
-  root('node_modules/rxjs')
-];
-
 export const loader: DefaultLoaders = {
   tsLintLoader: {
     enforce: 'pre',
-    test: /\.ts$/,
+    test: /\.ts?$/,
     use: [
       {
         loader: 'tslint-loader',
@@ -58,8 +50,7 @@ export const loader: DefaultLoaders = {
   },
   sourceMapLoader: {
     test: /\.js$/,
-    use: 'source-map-loader',
-    exclude: [ExcludeSourceMaps]
+    use: 'source-map-loader'
   },
   tsLoader: {
     test: /\.tsx?$/,
@@ -88,8 +79,15 @@ export const loader: DefaultLoaders = {
   cssLoader: {
     test: /\.css$/,
     use: [
-      'to-string-loader',
-      'css-loader',
+      'vue-style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          importLoader: 1,
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]'
+        }
+      },
       {
         loader: 'postcss-loader',
         options: {
@@ -120,10 +118,6 @@ export const DefaultCommonConfig = ({ isDev }): DefaultConfig => {
         __DEV__: isDev,
         __PROD__: !isDev
       }),
-      new ContextReplacementPlugin(
-        /(.+)?angular(\\|\/)core(.+)?/,
-        root(`src`)
-      ),
       new HtmlElementsWebpackPlugin({
         headTags: Object.assign({}, { link: CustomHeadTags.link, meta: CustomHeadTags.meta })
       })

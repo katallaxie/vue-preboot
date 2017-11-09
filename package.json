@@ -1,7 +1,7 @@
 {
   "name": "vue-preboot",
   "version": "1.0.0",
-  "description": "A teeny Vue.js template to get your next project booted. It is opinionated and powered by Webpack.",
+  "description": "A teeny Vue.js template to get your next project booted. It is opinionated and powered by Webpack",
   "keywords": [
     "vue",
     "webpack",
@@ -24,7 +24,6 @@
     "core-js": "^2.5.1",
     "vue": "^2.5.2",
     "vue-class-component": "^6.1.0",
-    "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -62,6 +61,7 @@
     "typescript": "2.4.2",
     "typestyle": "^1.5.1",
     "vue-loader": "^13.4.0",
+    "vue-property-decorator": "^6.0.0",
     "vue-template-compiler": "^2.5.3",
     "webpack": "3.8.1",
     "webpack-dev-middleware": "^1.11.0",
@@ -81,10 +81,10 @@
   "jest": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/katallaxie/angular-preboot.git"
+    "url": "https://github.com/katallaxie/vue-preboot.git"
   },
   "bugs": {
-    "url": "https://github.com/katallaxie/angular-preboot/issues"
+    "url": "https://github.com/katallaxie/vue-preboot/issues"
   },
   "engines": {
     "node": ">= 6.9.1",

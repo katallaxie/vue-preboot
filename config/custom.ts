@@ -66,9 +66,9 @@ export const CustomHeadTags: HeadTags = {
     { name: 'msapplication-TileColor', content: '#00bcd4' },
     { name: 'msapplication-TileImage', content: '/icon/ms-icon-144x144.png', '=content': true },
     { name: 'theme-color', content: '#00bcd4' },
-    { name: 'description', content: 'A teeny tiny Angular template to get your next great project booted. It is powered by great ideas and Webpack 2. It does DLL, AoT, PostCss, Autoprefixer, and some other cool things.' },
+    { name: 'description', content: 'A teeny Vue.js template to get your next project booted. It is opinionated and powered by Webpack' },
   ],
-  title: 'Angular Preboot'
+  title: 'Vue.js Preboot'
 }
 
 // copy folders

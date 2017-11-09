@@ -24,7 +24,8 @@
       "hammerjs",
       "node",
       "source-map",
-      "uglify-js"
+      "uglify-js",
+      "vue"
     ]
   },
   "exclude": [
