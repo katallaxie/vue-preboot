@@ -25,6 +25,7 @@
       "node",
       "source-map",
       "uglify-js",
+      "jest",
       "vue"
     ]
   },

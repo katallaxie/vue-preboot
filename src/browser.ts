@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './components/app'
+import { App } from './components/app'
 
 // enables pwa
 if (__PROD__) {
