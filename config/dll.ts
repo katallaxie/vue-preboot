@@ -10,6 +10,9 @@ export function polyfills() {
 export function vendor() {
   return [
     'vue',
+    'vue-router',
+    'vuex',
+    'vuex-class',
     'vue-class-component'
   ];
 }

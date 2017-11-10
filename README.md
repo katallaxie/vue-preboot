@@ -19,6 +19,8 @@
 * [Jest](https://facebook.github.io/jest)
 * [Docker](https://docker.io)
 * [Prettier](https://github.com/prettier/prettier)
+* [Vuex](https://github.com/vuejs/vuex
+* [Vue.js Router](https://github.com/vuejs/vue-router)
 * Offline Support (PWA)
 
 ## Quick Start
