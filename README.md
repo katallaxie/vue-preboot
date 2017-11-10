@@ -5,6 +5,8 @@
 
 # Vue Preboot
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/katallaxie/vue-preboot.svg)](https://greenkeeper.io/)
+
 > An [Vue](https://vuejs.org/) boilerplate, which has a lot of features and is driven by great spirit.
 
 # Features
