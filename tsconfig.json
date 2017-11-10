@@ -34,6 +34,7 @@
     "node_modules",
     "public",
     "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
     "src/**/*.e2e.ts"
   ],
   "compileOnSave": false,

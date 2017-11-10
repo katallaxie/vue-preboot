@@ -31,7 +31,8 @@
     "public",
     "config",
     "webpack.config.ts",
-    "src/**/*.spec.tsx?",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
     "src/**/*.e2e.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
