@@ -143,13 +143,15 @@ const prodConfig = () => {
     hints: 'warning'
   };
 
-  config.output = {
-    publicPath: '/',
-    path: root(`public`),
-    filename: '[name].[chunkhash].bundle.js',
-    sourceMapFilename: '[name].[chunkhash].bundle.map',
-    chunkFilename: '[id].[chunkhash].chunk.js'
-  };
+  config.devtool = false,
+
+    config.output = {
+      publicPath: '/',
+      path: root(`public`),
+      filename: '[name].[chunkhash].bundle.js',
+      sourceMapFilename: '[name].[chunkhash].bundle.map',
+      chunkFilename: '[id].[chunkhash].chunk.js'
+    };
 
   config.plugins = [
     ...DefaultProdConfig().plugins,
