@@ -13,11 +13,33 @@
  *
  */
 
+import * as Autoprefixer from 'autoprefixer';
+import * as CssNano from 'cssnano';
+
+import * as PreloadWebpackPlugin from 'preload-webpack-plugin';
+
 // common
 export const CustomCommonConfig: CustomConfig = {
   plugins: [
+    new PreloadWebpackPlugin()
   ],
   rules: [
+    {
+      test: /boot\.css$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [
+              Autoprefixer(),
+              CssNano()
+            ]
+          }
+        }
+      ]
+    }
   ]
 };
 

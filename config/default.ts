@@ -83,7 +83,6 @@ export const loader: DefaultLoaders = {
   cssLoader: {
     test: /\.css$/,
     use: [
-      'vue-style-loader',
       {
         loader: 'css-loader',
         options: {
@@ -95,10 +94,14 @@ export const loader: DefaultLoaders = {
       {
         loader: 'postcss-loader',
         options: {
-          plugins: () => [Autoprefixer(), CssNano()]
+          plugins: () => [
+            Autoprefixer(),
+            CssNano()
+          ]
         }
       }
-    ]
+    ],
+    exclude: /boot\.css/
   },
   htmlLoader: {
     test: /\.html$/,
@@ -189,7 +192,6 @@ export const DefaultProdConfig = (): DefaultConfig => {
       }),
       new CopyWebpackPlugin([...DefaultCopyFolders, ...CustomCopyFolders]),
       new HtmlWebpackPlugin({
-        inject: 'head',
         template: './src/index.html',
         title: CustomHeadTags.title,
         minify: {

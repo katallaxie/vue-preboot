@@ -3,6 +3,9 @@ import { App } from './components/app'
 import store from './store';
 import router from './router';
 
+// critical css
+import './boot';
+
 // enables pwa
 if (__PROD__) {
   require('./pwa')

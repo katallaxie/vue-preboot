@@ -166,7 +166,7 @@ const defaultConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig;
 
   config.resolve = {
-    extensions: ['.ts', '.tsx', '.vue', '.js', '.json']
+    extensions: ['.ts', '.tsx', '.vue', '.js', '.json', '.css', '.scss']
   };
 
   return config;
