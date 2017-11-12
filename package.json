@@ -89,6 +89,7 @@
     "cssnano": "^3.10.0",
     "csx": "^8.5.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "html-critical-webpack-plugin": "^1.0.1",
     "html-elements-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.30.1",
     "http-server": "^0.10.0",

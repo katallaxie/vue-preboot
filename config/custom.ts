@@ -12,33 +12,40 @@
  * - Dev Server Configuration
  *
  */
+import { root } from './helpers';
 
 import * as Autoprefixer from 'autoprefixer';
 import * as CssNano from 'cssnano';
 
 import * as PreloadWebpackPlugin from 'preload-webpack-plugin';
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
+import * as HtmlCriticalPlugin from 'html-critical-webpack-plugin';
+
+const bootCss = new ExtractTextPlugin('boot.css');
 
 // common
 export const CustomCommonConfig: CustomConfig = {
   plugins: [
+    bootCss,
     new PreloadWebpackPlugin()
   ],
   rules: [
     {
       test: /boot\.css$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        {
-          loader: 'postcss-loader',
-          options: {
-            plugins: () => [
-              Autoprefixer(),
-              CssNano()
-            ]
+      use: ExtractTextPlugin.extract({
+        use: [
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                Autoprefixer(),
+                CssNano()
+              ]
+            }
           }
-        }
-      ]
+        ]
+      })
     }
   ]
 };
@@ -56,7 +63,17 @@ export const CustomDevConfig: CustomConfig = {
 // production
 export const CustomProdConfig: CustomConfig = {
   plugins: [
-
+    new HtmlCriticalPlugin({
+      base: root(`public`),
+      src: 'index.html',
+      dest: 'index.html',
+      inline: true,
+      minify: true,
+      extract: true,
+      penthouse: {
+        blockJSRequests: false,
+      }
+    })
   ],
   rules: [
 
