@@ -214,7 +214,7 @@ export const DefaultProdConfig = (): DefaultConfig => {
         title: CustomHeadTags.title,
         minify: {
           minifyJS: true,
-          removeComments: false,
+          removeComments: false, // this is for ssr
           collapseWhitespace: true
         }
       }),

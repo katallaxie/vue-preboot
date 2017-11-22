@@ -40,10 +40,11 @@ const ENV = process.env.NODE_ENV || 'development'
 
 // dll's
 import { polyfills } from './config/dll'
+import { CustomSSRConfig } from './config/custom';
 
 const envConfig = {
   isDev: EVENT.includes('dev'),
-  isSSR: EVENT.includes('ssr'),
+  isSSR: EVENT.includes('server'),
   port: process.env.PORT || ENV === 'development' ? DevServerConfig.port : 8080,
   host: process.env.HOST || 'localhost'
 }
@@ -129,7 +130,7 @@ const devConfig = () => {
 const prodConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
 
-  config.devtool = 'source-map'
+  config.devtool = false
 
   config.module = {
     rules: [...DefaultProdConfig().rules, ...CustomProdConfig.rules]
@@ -144,15 +145,13 @@ const prodConfig = () => {
     hints: 'warning'
   }
 
-  config.devtool = false,
-
-    config.output = {
-      publicPath: '/',
-      path: root(`public`),
-      filename: '[name].[chunkhash].bundle.js',
-      sourceMapFilename: '[name].[chunkhash].bundle.map',
-      chunkFilename: '[id].[chunkhash].chunk.js'
-    }
+  config.output = {
+    path: root(`public/client`),
+    publicPath: '/client/',
+    filename: '[name].[chunkhash].bundle.js',
+    sourceMapFilename: '[name].[chunkhash].bundle.map',
+    chunkFilename: '[id].[chunkhash].chunk.js'
+  }
 
   config.plugins = [
     ...DefaultProdConfig().plugins,
@@ -169,7 +168,7 @@ const ssrConfig = () => {
   config.devtool = false
 
   config.module = {
-    rules: [...DefaultSsrConfig(envConfig).rules, ...CustomProdConfig.rules]
+    rules: [...DefaultSsrConfig(envConfig).rules, ...CustomSSRConfig.rules]
   }
 
   config.target = 'node'
