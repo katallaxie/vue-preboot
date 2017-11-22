@@ -10,9 +10,15 @@ export class Home extends Vue {
 
   public render(h) {
     return (
-      <div class={biggerClass}>
-        {this.message}
-      </div >
+      <div class='container-fluid'>
+        <div class='row'>
+          <div class='col'>
+            <div class={biggerClass}>
+              {this.message}
+            </div >
+          </div>
+        </div>
+      </div>
     )
   }
 }

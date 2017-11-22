@@ -25,8 +25,11 @@ import * as Autoprefixer from 'autoprefixer';
 import * as CssNano from 'cssnano';
 
 // pws
-import * as OfflinePlugin from 'offline-plugin';
+// import * as OfflinePlugin from 'offline-plugin';
 import * as ManifestPlugin from 'webpack-manifest-plugin';
+
+// ssr
+import * as VueSSRPlugin from 'vue-ssr-webpack-plugin'
 
 import { CustomHeadTags, CustomCopyFolders } from './custom';
 
@@ -160,6 +163,21 @@ export const DefaultDevConfig = (): DefaultConfig => {
   };
 };
 
+export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
+  return {
+    rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
+    plugins: [
+      new DefinePlugin({
+        __DEV__: isDev,
+        __PROD__: !isDev,
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        'process.env.VUE_ENV': '"server"'
+      }),
+      new VueSSRPlugin()
+    ]
+  }
+}
+
 export const DefaultProdConfig = (): DefaultConfig => {
   return {
     rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
@@ -196,7 +214,7 @@ export const DefaultProdConfig = (): DefaultConfig => {
         title: CustomHeadTags.title,
         minify: {
           minifyJS: true,
-          removeComments: true,
+          removeComments: false,
           collapseWhitespace: true
         }
       }),
@@ -230,17 +248,17 @@ export const DefaultProdConfig = (): DefaultConfig => {
         }
       }),
       new ManifestPlugin(),
-      new OfflinePlugin({
-        relativePaths: false,
-        ServiceWorker: {
-          events: true,
-          navigateFallbackURL: '/'
-        },
-        AppCache: {
-          events: true,
-          FALLBACK: { '/': '/' }
-        }
-      })
+      // new OfflinePlugin({
+      //   relativePaths: false,
+      //   ServiceWorker: {
+      //     events: true,
+      //     navigateFallbackURL: '/'
+      //   },
+      //   AppCache: {
+      //     events: true,
+      //     FALLBACK: { '/': '/' }
+      //   }
+      // })
     ]
   };
 };
