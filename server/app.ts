@@ -30,7 +30,7 @@ if (isProd) {
   })
 }
 
-app.use('/', serve('../public', false))
+app.use('/public', serve('../public', false))
 
 app.get('*', (req, res) => {
   if (!renderer) {
