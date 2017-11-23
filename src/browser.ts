@@ -8,36 +8,34 @@ if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
 
-// reading
+// wait until router has resolved all async before hooks
+// and async components...
 router.onReady(() => {
-  // use router hook for handling async data.
-  // we do it after initial route, so that we don't double-fetch data.
-
-  // Use router.beforeResolve() so that all async components are resolved.
   router.beforeResolve((to, from, next) => {
     const matched = router.getMatchedComponents(to)
     const prevMatched = router.getMatchedComponents(from)
-
     let diffed = false
-    const activated = matched.filter((c, i) => {
-      return diffed || (diffed = (prevMatched[i] !== c))
-    })
 
+    if (store.state.error) {
+      store.commit('CLEAR_ERROR')
+    }
+
+    const activated = matched.filter((component, i) => {
+      return diffed || (diffed = (prevMatched[i] !== component))
+    })
     if (!activated.length) {
       return next()
     }
-
-    // start loading
     Promise.all(activated.map((c: any) => {
       if (c.asyncData) {
         return c.asyncData({ store, route: to })
       }
     })).then(() => {
-      // stop loading indicator
       next()
     }).catch(next)
   })
 
+  // actually mount to DOM
   app.$mount('#app')
 })
 

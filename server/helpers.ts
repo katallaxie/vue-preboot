@@ -8,13 +8,17 @@ export const serve = (path, cache) => express.static(resolve(path), {
   maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0
 })
 
-export const createRenderer = (bundle, template) => {
+export const createRenderer = (bundle, template, options) => {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
-  return require('vue-server-renderer').createBundleRenderer(bundle, {
+  return require('vue-server-renderer').createBundleRenderer(bundle, Object.assign(options, {
     template,
     cache: require('lru-cache')({
       max: 1000,
       maxAge: 1000 * 60 * 15
-    })
-  })
+    }),
+    // this is only needed when vue-server-renderer is npm-linked
+    basedir: resolve('./public'),
+    // recommended for performance
+    runInNewContext: false
+  }))
 }

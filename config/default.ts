@@ -10,7 +10,7 @@ import * as HtmlElementsWebpackPlugin from 'html-elements-webpack-plugin'
 import * as AutoDllPlugin from 'autodll-webpack-plugin'
 import * as CopyWebpackPlugin from 'copy-webpack-plugin'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
-import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin'
+// import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin'
 
 // optimization
 import * as BrotliPlugin from 'brotli-webpack-plugin'
@@ -28,7 +28,8 @@ import * as CssNano from 'cssnano'
 import * as ManifestPlugin from 'webpack-manifest-plugin'
 
 // ssr
-import * as VueSSRPlugin from 'vue-ssr-webpack-plugin'
+import * as VueSSRClientPlugin from 'vue-server-renderer/client-plugin'
+import * as VueSSRServerPlugin from 'vue-server-renderer/server-plugin'
 import { HotModuleReplacementPlugin, NamedModulesPlugin } from 'webpack'
 
 import { CustomHeadTags, CustomCopyFolders } from './custom'
@@ -152,16 +153,20 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
         'process.env.VUE_ENV': '"client"'
       }),
       new HtmlWebpackPlugin({
-        inject: 'head',
+        inject: false,
         template: 'src/index.html',
         title: CustomHeadTags.title
       }),
       new NamedModulesPlugin(),
       new CopyWebpackPlugin([...DefaultCopyFolders, ...CustomCopyFolders]),
-      new ScriptExtHtmlWebpackPlugin({
-        defaultAttribute: 'defer'
-      }),
-      new HotModuleReplacementPlugin()
+      // new ScriptExtHtmlWebpackPlugin({
+      //   defaultAttribute: 'defer'
+      // }),
+      new HotModuleReplacementPlugin(),
+      new VueSSRClientPlugin(),
+      new CommonsChunkPlugin({
+        name: 'manifest'
+      })
     ]
   }
 }
@@ -176,7 +181,7 @@ export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
         'process.env.VUE_ENV': '"server"'
       }),
-      new VueSSRPlugin()
+      new VueSSRServerPlugin()
     ]
   }
 }
@@ -185,6 +190,7 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
   return {
     rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
     plugins: [
+      new VueSSRClientPlugin(),
       new DefinePlugin({
         __DEV__: isDev,
         __PROD__: !isDev,
@@ -210,6 +216,9 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
       new CommonsChunkPlugin({
         name: ['polyfills', 'vendor'].reverse()
       }),
+      new CommonsChunkPlugin({
+        name: 'manifest'
+      }),
       new CompressionPlugin({
         asset: '[path].gz[query]',
         algorithm: 'gzip',
@@ -223,16 +232,17 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         title: CustomHeadTags.title,
         minify: {
           minifyJS: true,
-          removeComments: false, // this is for ssr
-          collapseWhitespace: true
+          removeComments: true, // this is for ssr
+          collapseWhitespace: true,
+          ignoreCustomComments: [/vue-ssr-outlet/]
         }
       }),
-      new ScriptExtHtmlWebpackPlugin({
-        sync: /polyfills|vendor/,
-        defaultAttribute: 'async',
-        preload: [/polyfills|vendor|main/],
-        prefetch: [/chunk/]
-      }),
+      // new ScriptExtHtmlWebpackPlugin({
+      //   sync: /polyfills|vendor/,
+      //   defaultAttribute: 'async',
+      //   preload: [/polyfills|vendor|main/],
+      //   prefetch: [/chunk/]
+      // }),
       new UglifyJsPlugin({
         beautify: false,
         output: {

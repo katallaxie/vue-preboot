@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import setupDevServer from '../config/server'
 
 // helpers
-import { serve, resolve, createRenderer } from './helpers'
+import { serve, createRenderer, resolve } from './helpers'
 import { DevServerConfig } from '../config/custom'
 
 // config
@@ -15,13 +15,18 @@ const app = express()
 const port = process.env.PORT || DevServerConfig.port
 
 let renderer
+let readyPromise
 if (isProd) {
-  const bundle = require('../public/vue-ssr-bundle.json')
+  const bundle = require('../public/vue-ssr-server-bundle.json')
+  const clientManifest = require('../public/client/vue-ssr-client-manifest.json')
   const template = fs.readFileSync(resolve('../public/client/index.html'), 'utf-8')
-  renderer = createRenderer(bundle, template)
+  renderer = createRenderer(bundle, template, {
+    clientManifest
+  })
+  readyPromise = Promise.resolve()
 } else {
-  setupDevServer(app, (bundle, template) => {
-    renderer = createRenderer(bundle, template)
+  readyPromise = setupDevServer(app, (bundle, template, options) => {
+    renderer = createRenderer(bundle, template, options)
   })
 }
 
@@ -55,6 +60,13 @@ app.get('*', (req, res) => {
 
 
 // start server
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`)
 })
+
+module.exports = {
+  ready: readyPromise,
+  close: () => {
+    server.close()
+  }
+}
