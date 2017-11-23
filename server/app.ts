@@ -1,6 +1,7 @@
 
 import * as express from 'express'
 import * as fs from 'fs'
+import setupDevServer from '../config/server'
 
 // helpers
 import { serve, resolve, createRenderer } from './helpers'
@@ -18,7 +19,7 @@ if (isProd) {
   const template = fs.readFileSync(resolve('../public/client/index.html'), 'utf-8')
   renderer = createRenderer(bundle, template)
 } else {
-  require('./build/dev-server')(app, (bundle, template) => {
+  setupDevServer(app, (bundle, template) => {
     renderer = createRenderer(bundle, template)
   })
 }

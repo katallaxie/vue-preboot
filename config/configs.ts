@@ -1,22 +1,8 @@
-/**
- *
- * - imports
- * - custom
- * - config
- * - common
- * - dev
- * - dll
- * - prod
- * - webpack
- */
-
 // node
 import * as process from 'process'
 
-import * as webpackMerge from 'webpack-merge'
-
 // helpers
-import { isWebpackDevServer, root } from './config/helpers'
+import { root } from './helpers'
 
 // defaults
 import {
@@ -24,7 +10,7 @@ import {
   DefaultDevConfig,
   DefaultProdConfig,
   DefaultSsrConfig
-} from './config/default'
+} from './default'
 
 // custom
 import {
@@ -32,25 +18,25 @@ import {
   CustomDevConfig,
   CustomProdConfig,
   DevServerConfig
-} from './config/custom'
-
-// config
-const EVENT = process.env.npm_lifecycle_event
-const ENV = process.env.NODE_ENV || 'development'
+} from './custom'
 
 // dll's
-import { polyfills } from './config/dll'
-import { CustomSSRConfig } from './config/custom';
+import { polyfills } from './dll'
+import { CustomSSRConfig } from './custom';
 
-const envConfig = {
-  isDev: EVENT.includes('dev'),
+// config
+export const EVENT = process.env.npm_lifecycle_event
+export const ENV = process.env.NODE_ENV || 'development'
+
+export const envConfig = {
+  isDev: ENV === 'development',
   isSSR: EVENT.includes('server'),
   port: process.env.PORT || ENV === 'development' ? DevServerConfig.port : 8080,
   host: process.env.HOST || 'localhost'
 }
 
 // common
-const commonConfig = () => {
+export const commonConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
 
   config.context = root()
@@ -83,7 +69,7 @@ const commonConfig = () => {
 }
 
 // dev
-const devConfig = () => {
+export const devConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
 
   config.devtool = 'cheap-module-source-map'
@@ -102,40 +88,28 @@ const devConfig = () => {
   }
 
   config.entry = {
-    main: [].concat(polyfills(), './src/browser')
+    app: [].concat(polyfills(), './src/browser')
   }
 
   config.output = {
-    path: root(`public`),
-    publicPath: '/',
+    path: root(`public/client`),
+    publicPath: '/client/',
     filename: '[name].bundle.js',
     sourceMapFilename: '[file].map',
     chunkFilename: '[id].chunk.js'
-  }
-
-  if (isWebpackDevServer) {
-    config.devServer = {
-      contentBase: root(`src`),
-      historyApiFallback: true,
-      host: envConfig.host,
-      port: envConfig.port,
-      hot: true,
-
-      ...DevServerConfig.options
-    }
   }
 
   return config
 }
 
 // prod
-const prodConfig = () => {
+export const prodConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
 
   config.devtool = false
 
   config.module = {
-    rules: [...DefaultProdConfig(envConfig).rules, ...CustomProdConfig.rules]
+    rules: [...DefaultProdConfig().rules, ...CustomProdConfig.rules]
   }
 
   config.entry = {
@@ -156,7 +130,7 @@ const prodConfig = () => {
   }
 
   config.plugins = [
-    ...DefaultProdConfig(envConfig).plugins,
+    ...DefaultProdConfig().plugins,
     ...CustomProdConfig.plugins
   ]
 
@@ -164,7 +138,7 @@ const prodConfig = () => {
 }
 
 // ssr
-const ssrConfig = () => {
+export const ssrConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
 
   config.devtool = false
@@ -194,13 +168,13 @@ const ssrConfig = () => {
     ...CustomProdConfig.plugins
   ]
 
-  config.externals = Object.keys(require('./package.json').dependencies)
+  config.externals = Object.keys(require('../package.json').dependencies)
 
   return config
 }
 
 // default
-const defaultConfig = () => {
+export const defaultConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
 
   config.resolve = {
@@ -208,36 +182,4 @@ const defaultConfig = () => {
   }
 
   return config
-}
-
-// webpack
-switch (ENV) {
-  case 'prod':
-  case 'production':
-    if (envConfig.isSSR) {
-      module.exports = webpackMerge(
-        {},
-        defaultConfig(),
-        ssrConfig(),
-        commonConfig()
-      )
-      break
-    }
-
-    module.exports = webpackMerge(
-      {},
-      defaultConfig(),
-      prodConfig(),
-      commonConfig()
-    )
-    break
-  case 'dev':
-  case 'development':
-  default:
-    module.exports = webpackMerge(
-      {},
-      defaultConfig(),
-      commonConfig(),
-      devConfig()
-    )
 }

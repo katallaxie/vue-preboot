@@ -1,46 +1,46 @@
 /*** DO NOT TOUCH ***/
-import { root } from './helpers';
+import { root } from './helpers'
 import {
   DefinePlugin,
   ProgressPlugin
-} from 'webpack';
-import { CheckerPlugin } from 'awesome-typescript-loader';
-import { TsConfigPathsPlugin } from 'awesome-typescript-loader';
-import * as HtmlElementsWebpackPlugin from 'html-elements-webpack-plugin';
-import * as AutoDllPlugin from 'autodll-webpack-plugin';
-import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
-import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
+} from 'webpack'
+import { CheckerPlugin } from 'awesome-typescript-loader'
+import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
+import * as HtmlElementsWebpackPlugin from 'html-elements-webpack-plugin'
+import * as AutoDllPlugin from 'autodll-webpack-plugin'
+import * as CopyWebpackPlugin from 'copy-webpack-plugin'
+import * as HtmlWebpackPlugin from 'html-webpack-plugin'
+import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin'
 
 // optimization
-import * as BrotliPlugin from 'brotli-webpack-plugin';
-import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
-import * as CompressionPlugin from 'compression-webpack-plugin';
-import * as NamedModulesPlugin from 'webpack/lib/NamedModulesPlugin';
-import * as OptimizeJsPlugin from 'optimize-js-plugin';
-import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin';
+import * as BrotliPlugin from 'brotli-webpack-plugin'
+import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
+import * as CompressionPlugin from 'compression-webpack-plugin'
+import * as OptimizeJsPlugin from 'optimize-js-plugin'
+import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
 
 // postCss
-import * as Autoprefixer from 'autoprefixer';
-import * as CssNano from 'cssnano';
+import * as Autoprefixer from 'autoprefixer'
+import * as CssNano from 'cssnano'
 
 // pws
-// import * as OfflinePlugin from 'offline-plugin';
-import * as ManifestPlugin from 'webpack-manifest-plugin';
+// import * as OfflinePlugin from 'offline-plugin'
+import * as ManifestPlugin from 'webpack-manifest-plugin'
 
 // ssr
 import * as VueSSRPlugin from 'vue-ssr-webpack-plugin'
+import { HotModuleReplacementPlugin, NamedModulesPlugin } from 'webpack'
 
-import { CustomHeadTags, CustomCopyFolders } from './custom';
+import { CustomHeadTags, CustomCopyFolders } from './custom'
 
 // copy
 export const DefaultCopyFolders = [
   { from: 'src/static', ignore: ['favicon.ico'] },
   { from: 'src/meta' }
-];
+]
 
 // dll's
-import { polyfills, vendor } from './dll';
+import { polyfills, vendor } from './dll'
 
 export const loader: DefaultLoaders = {
   tsLintLoader: {
@@ -115,27 +115,23 @@ export const loader: DefaultLoaders = {
     test: /\.(jpg|png|gif)$/,
     use: 'file-loader'
   }
-};
+}
 
-export const DefaultCommonConfig = ({ isDev }): DefaultConfig => {
+export const DefaultCommonConfig = (): DefaultConfig => {
   return {
     rules: [loader.cssLoader, loader.htmlLoader, loader.fileLoader],
     plugins: [
       new ProgressPlugin(),
       new CheckerPlugin(),
       new TsConfigPathsPlugin(),
-      new DefinePlugin({
-        __DEV__: isDev,
-        __PROD__: !isDev
-      }),
       new HtmlElementsWebpackPlugin({
         headTags: Object.assign({}, { link: CustomHeadTags.link, meta: CustomHeadTags.meta })
       })
     ]
-  };
-};
+  }
+}
 
-export const DefaultDevConfig = (): DefaultConfig => {
+export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
   return {
     rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
     plugins: [
@@ -149,6 +145,12 @@ export const DefaultDevConfig = (): DefaultConfig => {
           vendor: vendor()
         }
       }),
+      new DefinePlugin({
+        __DEV__: isDev,
+        __PROD__: !isDev,
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        'process.env.VUE_ENV': '"client"'
+      }),
       new HtmlWebpackPlugin({
         inject: 'head',
         template: 'src/index.html',
@@ -158,10 +160,11 @@ export const DefaultDevConfig = (): DefaultConfig => {
       new CopyWebpackPlugin([...DefaultCopyFolders, ...CustomCopyFolders]),
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer'
-      })
+      }),
+      new HotModuleReplacementPlugin()
     ]
-  };
-};
+  }
+}
 
 export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -178,10 +181,16 @@ export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
   }
 }
 
-export const DefaultProdConfig = (): DefaultConfig => {
+export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
   return {
     rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
     plugins: [
+      new DefinePlugin({
+        __DEV__: isDev,
+        __PROD__: !isDev,
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        'process.env.VUE_ENV': '"client"'
+      }),
       new OptimizeJsPlugin({
         sourceMap: false
       }),
@@ -260,5 +269,5 @@ export const DefaultProdConfig = (): DefaultConfig => {
       //   }
       // })
     ]
-  };
-};
+  }
+}
