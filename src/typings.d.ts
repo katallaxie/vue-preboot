@@ -12,6 +12,11 @@ declare var System: SystemJS;
 declare var __PROD__: boolean;
 declare var __DEV__: boolean;
 
+// Window
+interface Window {
+  __INITIAL_STATE__: any;
+}
+
 interface SystemJS {
   import: (path?: string) => Promise<any>;
 }

@@ -16,15 +16,13 @@
   <base href="/">
 
   <% if (__DEV__) { %>
-  <script src="/polyfills.dll.js" defer></script>
-  <script src="/vendor.dll.js" defer></script>
+  <script src="/client/polyfills.dll.js"></script>
+  <script src="/client/vendor.dll.js"></script>
   <% } %>
 
 </head>
 
 <body>
-  <div id="app">
-    Loading...
-  </div>
+  <!--vue-ssr-outlet-->
 </body>
 </html>

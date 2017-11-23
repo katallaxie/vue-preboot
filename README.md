@@ -5,12 +5,13 @@
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![Greenkeeper badge](https://badges.greenkeeper.io/katallaxie/vue-preboot.svg)](https://greenkeeper.io/)
 
-> An [Vue](https://vuejs.org/) boilerplate, which has a lot of features and is driven by great spirit.
+> A [Vue](https://vuejs.org/) boilerplate, which has a lot of features and is driven by great spirit.
 
 # Features
 
 > The boilerplate is opinionated, and nudges devs to do certain things
 
+* [SSR](https://ssr.vuejs.org) + Hot Module Reload
 * [Webpack](http://webpack.github.io/) + DLL Support
 * [TypeScript](http://www.typescriptlang.org/)
 * [@types](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjgjdrR7u_NAhUQ7GMKHXgpC4EQFggnMAI&url=https%3A%2F%2Fwww.npmjs.com%2F~types&usg=AFQjCNG2PFhwEo88JKo12mrw_4d0w1oNiA&sig2=N69zbO0yN8ET7v4KVCUOKA)
@@ -54,14 +55,14 @@ npm start
 
 Open [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http://localhost:3000) in your favorite Browser.
 
-### Build and deploy your great project
+### Build and run the SSR
 
 ```bash
-# build the prod version of your project
-npm run build:prod
+# builds the prod version of the client and the needed SSR bundle
+npm run build
 
-# build a ready to ship Docker for your project
-npm run build:docker
+# runs the server
+npm run server
 ```
 
 ### Testing is import for quality products

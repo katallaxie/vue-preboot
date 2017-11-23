@@ -6,6 +6,10 @@ import { Home } from '../home'
 export class App extends Vue {
 
   public render(h) {
-    return (<Home />)
+    return (
+      <div id='app'>
+        <Home />
+      </div>
+    )
   }
 }

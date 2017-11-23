@@ -21,18 +21,20 @@
       "es6"
     ],
     "types": [
+      "express",
       "hammerjs",
+      "jasmine",
+      "jest",
       "node",
       "source-map",
       "uglify-js",
-      "jasmine",
-      "jest",
       "vue"
     ]
   },
   "exclude": [
     "node_modules",
     "public",
+    "server",
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx",
     "src/**/*.e2e.ts"
