@@ -5,13 +5,14 @@ import setupDevServer from '../config/server'
 
 // helpers
 import { serve, resolve, createRenderer } from './helpers'
+import { DevServerConfig } from '../config/custom'
 
 // config
 const isProd = process.env.NODE_ENV === 'production'
 
 // app
 const app = express()
-const port = process.env.PORT || 8083
+const port = process.env.PORT || DevServerConfig.port
 
 let renderer
 if (isProd) {

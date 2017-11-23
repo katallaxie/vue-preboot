@@ -1,6 +1,9 @@
 // node
 import * as process from 'process'
 
+// webpack
+import * as webpackMerge from 'webpack-merge'
+
 // helpers
 import { root } from './helpers'
 
@@ -109,7 +112,7 @@ export const prodConfig = () => {
   config.devtool = false
 
   config.module = {
-    rules: [...DefaultProdConfig().rules, ...CustomProdConfig.rules]
+    rules: [...DefaultProdConfig(envConfig).rules, ...CustomProdConfig.rules]
   }
 
   config.entry = {
@@ -130,7 +133,7 @@ export const prodConfig = () => {
   }
 
   config.plugins = [
-    ...DefaultProdConfig().plugins,
+    ...DefaultProdConfig(envConfig).plugins,
     ...CustomProdConfig.plugins
   ]
 
@@ -182,4 +185,10 @@ export const defaultConfig = () => {
   }
 
   return config
+}
+
+export default {
+  ssrConfig: webpackMerge({}, defaultConfig(), ssrConfig(), commonConfig()),
+  devConfig: webpackMerge({}, defaultConfig(), commonConfig(), devConfig()),
+  prodConfig: webpackMerge({}, defaultConfig(), commonConfig(), prodConfig())
 }
