@@ -91,7 +91,7 @@ export const devConfig = () => {
   }
 
   config.entry = {
-    app: [].concat(polyfills(), './src/browser')
+    app: [].concat('./src/browser')
   }
 
   config.output = {
