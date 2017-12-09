@@ -15,6 +15,7 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 // optimization
 import * as BrotliPlugin from 'brotli-webpack-plugin'
 import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
+import * as ModuleConcatenationPlugin from 'webpack/lib/optimize/ModuleConcatenationPlugin'
 import * as CompressionPlugin from 'compression-webpack-plugin'
 import * as OptimizeJsPlugin from 'optimize-js-plugin'
 import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
@@ -159,9 +160,6 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
       }),
       new NamedModulesPlugin(),
       new CopyWebpackPlugin([...DefaultCopyFolders, ...CustomCopyFolders]),
-      // new ScriptExtHtmlWebpackPlugin({
-      //   defaultAttribute: 'defer'
-      // }),
       new HotModuleReplacementPlugin(),
       new VueSSRClientPlugin(),
       new CommonsChunkPlugin({
@@ -206,6 +204,7 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         threshold: 10240,
         minRatio: 0.8
       }),
+      new ModuleConcatenationPlugin(),
       // new NoEmitOnErrorsPlugin(), // quality
       // This enables tree shaking of the vendor modules
       new CommonsChunkPlugin({
@@ -230,6 +229,7 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
       new HtmlWebpackPlugin({
         template: './src/index.html',
         title: CustomHeadTags.title,
+        inject: false,
         minify: {
           minifyJS: true,
           removeComments: true, // this is for ssr
