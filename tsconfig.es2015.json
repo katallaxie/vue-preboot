@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": false,
-    "target": "es5",
+    "target": "es2015",
     "jsx": "preserve",
     "jsxFactory": "h",
     "lib": [

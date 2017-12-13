@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { Home } from '../home'
 
 @Component
 export class App extends Vue {
@@ -8,7 +7,7 @@ export class App extends Vue {
   public render(h) {
     return (
       <div id='app'>
-        <Home />
+        <router-view></router-view>
       </div>
     )
   }
