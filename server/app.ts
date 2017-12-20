@@ -1,18 +1,17 @@
 
 import * as express from 'express'
 import * as fs from 'fs'
-import setupDevServer from '../config/server'
+import * as process from 'process'
 
 // helpers
 import { serve, createRenderer, resolve } from './helpers'
-import { DevServerConfig } from '../config/custom'
 
 // config
 const isProd = process.env.NODE_ENV === 'production'
 
 // app
 const app = express()
-const port = process.env.PORT || DevServerConfig.port
+const port = process.env.PORT || isProd ? 8080 : 3000
 
 let renderer
 let readyPromise
@@ -25,6 +24,7 @@ if (isProd) {
   })
   readyPromise = Promise.resolve()
 } else {
+  const setupDevServer = require('../config/server').default
   readyPromise = setupDevServer(app, (bundle, template, options) => {
     renderer = createRenderer(bundle, template, options)
   })

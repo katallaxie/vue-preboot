@@ -21,14 +21,10 @@
       "es6"
     ],
     "types": [
-      "express",
-      "hammerjs",
-      "jasmine",
-      "jest",
-      "node",
-      "source-map",
-      "uglify-js",
-      "vue"
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
     ]
   },
   "exclude": [

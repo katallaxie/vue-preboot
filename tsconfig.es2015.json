@@ -19,7 +19,6 @@
       "dom"
     ],
     "types": [
-      "hammerjs",
       "node"
     ],
     "typeRoots": [
