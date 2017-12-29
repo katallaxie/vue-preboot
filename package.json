@@ -75,7 +75,7 @@
     "@types/express": "^4.0.39",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.6.3",
-    "@types/jest": "^21.1.5",
+    "@types/jest": "^22.0.0",
     "@types/source-map": "^0.5.2",
     "@types/uglify-js": "^2.6.29",
     "autodll-webpack-plugin": "^0.3.3",
