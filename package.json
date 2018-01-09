@@ -56,7 +56,7 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "@types/node": "^8.0.49",
+    "@types/node": "^9.3.0",
     "core-js": "^2.5.1",
     "cross-env": "^5.1.1",
     "express": "^4.16.2",
