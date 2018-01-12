@@ -25,7 +25,7 @@ export default function setupDevServer(app, cb) {
   }
 
   // modify client config to work with hot middleware
-  devConfig.entry.app = ['webpack-hot-middleware/client', ...devConfig.entry.app]
+  devConfig.entry.app = ['webpack-hot-middleware/client?reload=true', ...devConfig.entry.app]
   devConfig.output.filename = '[name].js'
 
   // dev middleware
@@ -36,7 +36,8 @@ export default function setupDevServer(app, cb) {
     stats: {
       colors: true,
       chunks: false
-    }
+    },
+    serverSideRender: true
   })
   app.use(devMiddleware)
 
