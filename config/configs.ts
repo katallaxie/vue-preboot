@@ -25,7 +25,7 @@ import {
 
 // dll's
 import { polyfills } from './dll'
-import { CustomSSRConfig } from './custom';
+import { CustomSSRConfig } from './custom'
 
 // config
 export const EVENT = process.env.npm_lifecycle_event
@@ -95,8 +95,8 @@ export const devConfig = () => {
   }
 
   config.output = {
-    path: root(`public/client`),
-    publicPath: '/client/',
+    path: root(`public`),
+    publicPath: '/static/',
     filename: '[name].bundle.js',
     sourceMapFilename: '[file].map',
     chunkFilename: '[id].chunk.js'
@@ -125,8 +125,8 @@ export const prodConfig = () => {
   }
 
   config.output = {
-    path: root(`public/client`),
-    publicPath: '/client/',
+    path: root(`public`),
+    publicPath: '/static/',
     filename: '[name].[chunkhash].bundle.js',
     sourceMapFilename: '[name].[chunkhash].bundle.map',
     chunkFilename: '[id].[chunkhash].chunk.js'

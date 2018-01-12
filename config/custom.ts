@@ -12,27 +12,25 @@
  * - Dev Server Configuration
  *
  */
-// import { root } from './helpers';
+// import { root } from './helpers'
 
-import * as Autoprefixer from 'autoprefixer';
-import * as CssNano from 'cssnano';
+import * as Autoprefixer from 'autoprefixer'
+import * as CssNano from 'cssnano'
 
-import * as PreloadWebpackPlugin from 'preload-webpack-plugin';
-import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
-// import * as HtmlCriticalPlugin from 'html-critical-webpack-plugin';
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin'
 
-const bootCss = new ExtractTextPlugin('boot.css');
+const bootCss = new ExtractTextPlugin('boot.css')
 
 // to copy folders
 export const CustomCopyFolders = [
 
-];
+]
 
 // common
 export const CustomCommonConfig: CustomConfig = {
   plugins: [
     bootCss,
-    new PreloadWebpackPlugin()
+    // new PreloadWebpackPlugin()
   ],
   rules: [
     {
@@ -53,7 +51,7 @@ export const CustomCommonConfig: CustomConfig = {
       })
     }
   ]
-};
+}
 
 // dev
 export const CustomDevConfig: CustomConfig = {
@@ -63,7 +61,7 @@ export const CustomDevConfig: CustomConfig = {
   rules: [
 
   ]
-};
+}
 
 // production
 export const CustomProdConfig: CustomConfig = {
@@ -83,7 +81,7 @@ export const CustomProdConfig: CustomConfig = {
   rules: [
 
   ]
-};
+}
 
 // ssr
 export const CustomSSRConfig: CustomConfig = {
@@ -130,4 +128,4 @@ export const DevServerConfig = {
     },
   },
   port: 3000
-};
+}

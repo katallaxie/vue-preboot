@@ -24,10 +24,6 @@ import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
 import * as Autoprefixer from 'autoprefixer'
 import * as CssNano from 'cssnano'
 
-// pws
-// import * as OfflinePlugin from 'offline-plugin'
-import * as ManifestPlugin from 'webpack-manifest-plugin'
-
 // ssr
 import * as VueSSRClientPlugin from 'vue-server-renderer/client-plugin'
 import * as VueSSRServerPlugin from 'vue-server-renderer/server-plugin'
@@ -162,9 +158,7 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
       new CopyWebpackPlugin([...DefaultCopyFolders, ...CustomCopyFolders]),
       new HotModuleReplacementPlugin(),
       new VueSSRClientPlugin(),
-      new CommonsChunkPlugin({
-        name: 'manifest'
-      })
+      // ManifestPlugin
     ]
   }
 }
@@ -216,7 +210,8 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         name: ['polyfills', 'vendor'].reverse()
       }),
       new CommonsChunkPlugin({
-        name: 'manifest'
+        name: 'manifest',
+        minChunks: Infinity
       }),
       new CompressionPlugin({
         asset: '[path].gz[query]',
@@ -266,7 +261,6 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
           screw_ie8: true
         }
       }),
-      new ManifestPlugin(),
       // new OfflinePlugin({
       //   relativePaths: false,
       //   ServiceWorker: {

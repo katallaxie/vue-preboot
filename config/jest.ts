@@ -1,10 +1,10 @@
-const tsc = require('typescript');
-const babelJest = require('babel-jest');
+const tsc = require('typescript')
+const babelJest = require('babel-jest')
 
 module.exports = {
   process(src, path) {
-    const isTs = path.endsWith('.ts');
-    const isTsx = path.endsWith('.tsx');
+    const isTs = path.endsWith('.ts')
+    const isTsx = path.endsWith('.tsx')
 
     if (isTs || isTsx) {
       src = tsc.transpileModule(
@@ -20,16 +20,16 @@ module.exports = {
           },
           fileName: path
         }
-      );
-      src = src.outputText;
+      )
+      src = src.outputText
 
       // update the path so babel can try and process the output
-      path = path.substr(0, path.lastIndexOf('.')) + (isTs ? '.js' : '.jsx') || path;
+      path = path.substr(0, path.lastIndexOf('.')) + (isTs ? '.js' : '.jsx') || path
     }
 
     if (path.endsWith('.js') || path.endsWith('.jsx')) {
-      src = babelJest.process(src, path);
+      src = babelJest.process(src, path)
     }
-    return src;
+    return src
   },
-};
+}

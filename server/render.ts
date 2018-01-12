@@ -11,8 +11,8 @@ let readyPromise
 export function ready(app) {
   if (isProd) {
     const bundle = require('../public/vue-ssr-server-bundle.json')
-    const clientManifest = require('../public/client/vue-ssr-client-manifest.json')
-    const template = fs.readFileSync(resolve('../public/client/index.html'), 'utf-8')
+    const clientManifest = require('../public/vue-ssr-client-manifest.json')
+    const template = fs.readFileSync(resolve('../public/index.html'), 'utf-8')
     renderer = createRenderer(bundle, template, {
       clientManifest
     })
