@@ -2,6 +2,7 @@
 import * as express from 'express'
 import * as fs from 'fs'
 import * as process from 'process'
+import * as pino from 'express-pino-logger'
 
 // helpers
 import { serve, createRenderer, resolve } from './helpers'
@@ -13,6 +14,13 @@ const isProd = process.env.NODE_ENV === 'production'
 const app = express()
 const port = process.env.PORT || isProd ? 8080 : 3000
 
+// logging
+app.use(pino())
+
+// static files
+app.use('/static', serve('../public', false))
+
+// renderer
 let renderer
 let readyPromise
 if (isProd) {
@@ -30,14 +38,11 @@ if (isProd) {
   })
 }
 
-app.use('/static', serve('../public', false))
-
+// render to
 app.get('*', (req, res) => {
   if (!renderer) {
     return res.end('waiting for compilation... refresh in a moment.')
   }
-
-  const s = Date.now()
 
   res.setHeader('Content-Type', 'text/html')
 
@@ -54,7 +59,6 @@ app.get('*', (req, res) => {
 
   renderer.renderToStream({ url: req.url })
     .on('error', errorHandler)
-    .on('end', () => console.log(`whole request: ${Date.now() - s}ms`))
     .pipe(res)
 })
 

@@ -13,11 +13,11 @@
   },
   "bundlesize": [
     {
-      "path": "./public/client/vendor.*.js",
+      "path": "./public/vendor.*.js",
       "maxSize": "400 kB"
     },
     {
-      "path": "./public/client/polyfills.*.js",
+      "path": "./public/polyfills.*.js",
       "maxSize": "120 kB"
     }
   ],
@@ -57,6 +57,7 @@
     "core-js": "^2.5.1",
     "cross-env": "^5.1.1",
     "express": "^4.16.2",
+    "express-pino-logger": "^3.0.1",
     "express-static-gzip": "^0.3.2",
     "ts-node": "^4.0.0",
     "tslib": "^1.5.0",
