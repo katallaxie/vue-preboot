@@ -60,16 +60,17 @@
     "core-js": "^2.5.1",
     "cross-env": "^5.1.1",
     "express": "^4.16.2",
+    "express-static-gzip": "^0.3.2",
     "ts-node": "^4.0.0",
     "tslib": "^1.5.0",
     "typescript": "2.6.2",
+    "vue": "^2.5.8",
     "vue-class-component": "^6.1.0",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.8",
-    "vue": "^2.5.8",
+    "vuex": "^3.0.1",
     "vuex-class": "^0.3.0",
-    "vuex-router-sync": "^5.0.0",
-    "vuex": "^3.0.1"
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.0.39",
