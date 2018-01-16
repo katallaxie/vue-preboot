@@ -13,6 +13,7 @@ export const serve = (path, cache) => isProd
   : express.static(resolve(path))
 
 export const createRenderer = (bundle, template, options) => {
+  // tslint:disable max-line-length
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return require('vue-server-renderer').createBundleRenderer(bundle, Object.assign(options, {
     template,

@@ -43,7 +43,7 @@
     "preversion": "npm test",
     "prestart": "npm run clean:public",
     "prod": "cross-env NODE_ENV=production",
-    "server:ssr": "ts-node ./server/app",
+    "server:ssr": "cross-env NODE_ENV=production mango-ssr --serve public --bundle public/vue-ssr-server-bundle.json -m public/vue-ssr-client-manifest.json -t public/index.html -w config/configs",
     "server": "cross-env NODE_ENV=production npm run server:ssr",
     "start": "cross-env NODE_ENV=development npm run server:ssr",
     "test": "cross-env NODE_ENV=testing npm run jest",
