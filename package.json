@@ -43,9 +43,8 @@
     "preversion": "npm test",
     "prestart": "npm run clean:public",
     "prod": "cross-env NODE_ENV=production",
-    "server:ssr": "cross-env NODE_ENV=production mango-ssr --serve public --bundle public/vue-ssr-server-bundle.json -m public/vue-ssr-client-manifest.json -t public/index.html -w config/configs",
-    "server": "cross-env NODE_ENV=production npm run server:ssr",
-    "start": "cross-env NODE_ENV=development npm run server:ssr",
+    "server": "cross-env NODE_ENV=production ./node_modules/.bin/mango-ssr --serve public --bundle public/vue-ssr-server-bundle.json -m public/vue-ssr-client-manifest.json -t public/index.html -w config/configs",
+    "start": "cross-env NODE_ENV=development ./node_modules/.bin/mango-ssr --serve public --bundle public/vue-ssr-server-bundle.json -m public/vue-ssr-client-manifest.json -t public/index.html -w config/configs",
     "test": "cross-env NODE_ENV=testing npm run jest",
     "test:bundlesize": "npm run bundlesize",
     "watch:test": "jest --watch",
@@ -71,6 +70,7 @@
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
+    "@axelspringer/mango-ssr": "^0.0.14",
     "@types/express": "^4.0.39",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.6.3",
@@ -115,6 +115,7 @@
     "tslint-config-prettier": "^1.5.0",
     "tslint-loader": "^3.5.1",
     "typestyle": "^1.5.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "vue-loader": "^13.4.0",
     "vue-property-decorator": "^6.0.0",
     "vue-ssr-webpack-plugin": "^3.0.0",
