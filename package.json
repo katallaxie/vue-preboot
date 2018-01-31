@@ -112,7 +112,7 @@
     "tslint-loader": "^3.5.1",
     "typestyle": "^1.5.1",
     "uglifyjs-webpack-plugin": "^1.1.6",
-    "vue-loader": "^13.4.0",
+    "vue-loader": "^14.0.0",
     "vue-property-decorator": "^6.0.0",
     "vue-ssr-webpack-plugin": "^3.0.0",
     "vue-template-compiler": "^2.5.3",
