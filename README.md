@@ -12,7 +12,7 @@
 > The boilerplate is opinionated, and nudges devs to do certain things
 
 * [SSR](https://ssr.vuejs.org) + Hot Module Reload
-* [Webpack](http://webpack.github.io/) + DLL Support
+* [Webpack](http://webpack.github.io/)
 * [TypeScript](http://www.typescriptlang.org/)
 * [@types](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjgjdrR7u_NAhUQ7GMKHXgpC4EQFggnMAI&url=https%3A%2F%2Fwww.npmjs.com%2F~types&usg=AFQjCNG2PFhwEo88JKo12mrw_4d0w1oNiA&sig2=N69zbO0yN8ET7v4KVCUOKA)
 * [TsLint](http://palantir.github.io/tslint/)
