@@ -77,6 +77,8 @@ export const devConfig = () => {
 
   config.devtool = 'cheap-module-source-map'
 
+  config.mode = 'development'
+
   config.module = {
     rules: [...DefaultDevConfig(envConfig).rules, ...CustomDevConfig.rules]
   }
@@ -143,6 +145,8 @@ export const prodConfig = () => {
 // ssr
 export const ssrConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
+
+  config.mode = 'development'
 
   config.devtool = false
 

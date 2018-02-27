@@ -1,20 +1,17 @@
 /*** DO NOT TOUCH ***/
 import { root } from './helpers'
 import {
-  DefinePlugin,
-  ProgressPlugin
+  DefinePlugin
 } from 'webpack'
 import { CheckerPlugin } from 'awesome-typescript-loader'
 import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
-import * as HtmlElementsWebpackPlugin from 'html-elements-webpack-plugin'
+// import * as HtmlElementsWebpackPlugin from 'html-elements-webpack-plugin'
 import * as CopyWebpackPlugin from 'copy-webpack-plugin'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 // import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin'
 
 // optimization
 import * as BrotliPlugin from 'brotli-webpack-plugin'
-import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
-import * as ModuleConcatenationPlugin from 'webpack/lib/optimize/ModuleConcatenationPlugin'
 import * as CompressionPlugin from 'compression-webpack-plugin'
 import * as OptimizeJsPlugin from 'optimize-js-plugin'
 import * as UglifyJsPlugin from 'uglifyjs-webpack-plugin'
@@ -35,9 +32,6 @@ export const DefaultCopyFolders = [
   { from: 'src/static', ignore: ['favicon.ico'] },
   { from: 'src/meta' }
 ]
-
-// dll's
-import { polyfills, vendor } from './dll'
 
 export const loader: DefaultLoaders = {
   tsLintLoader: {
@@ -118,19 +112,18 @@ export const DefaultCommonConfig = (): DefaultConfig => {
   return {
     rules: [loader.cssLoader, loader.htmlLoader, loader.fileLoader],
     plugins: [
-      new ProgressPlugin(),
       new CheckerPlugin(),
       new TsConfigPathsPlugin(),
-      new HtmlElementsWebpackPlugin({
-        headTags: Object.assign({}, { link: CustomHeadTags.link, meta: CustomHeadTags.meta })
-      })
+      // new HtmlElementsWebpackPlugin({
+      //   headTags: Object.assign({}, { link: CustomHeadTags.link, meta: CustomHeadTags.meta })
+      // })
     ]
   }
 }
 
 export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
   return {
-    rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
+    rules: [loader.vueLoader, loader.tsLoader],
     plugins: [
       new DefinePlugin({
         __DEV__: isDev,
@@ -154,7 +147,7 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
 
 export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
   return {
-    rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
+    rules: [loader.vueLoader, loader.tsLoader],
     plugins: [
       new DefinePlugin({
         __DEV__: isDev,
@@ -169,7 +162,7 @@ export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
 
 export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
   return {
-    rules: [loader.tsLintLoader, loader.vueLoader, loader.tsLoader],
+    rules: [loader.vueLoader, loader.tsLoader],
     plugins: [
       new VueSSRClientPlugin(),
       new DefinePlugin({
@@ -187,21 +180,19 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         threshold: 10240,
         minRatio: 0.8
       }),
-      new ModuleConcatenationPlugin(),
-      // new NoEmitOnErrorsPlugin(), // quality
       // This enables tree shaking of the vendor modules
-      new CommonsChunkPlugin({
-        name: 'vendor',
-        chunks: ['main'],
-        minChunks: module => /node_modules/.test(module.resource)
-      }),
-      new CommonsChunkPlugin({
-        name: ['polyfills', 'vendor'].reverse()
-      }),
-      new CommonsChunkPlugin({
-        name: 'manifest',
-        minChunks: Infinity
-      }),
+      // new CommonsChunkPlugin({
+      //   name: 'vendor',
+      //   chunks: ['main'],
+      //   minChunks: module => /node_modules/.test(module.resource)
+      // }),
+      // new CommonsChunkPlugin({
+      //   name: ['polyfills', 'vendor'].reverse()
+      // }),
+      // new CommonsChunkPlugin({
+      //   name: 'manifest',
+      //   minChunks: Infinity
+      // }),
       new CompressionPlugin({
         asset: '[path].gz[query]',
         algorithm: 'gzip',

@@ -1,6 +1,8 @@
 interface WebpackConfig {
   cache?: boolean
   target?: string
+  mode?: string
+  optimization?: any
   devtool?: string | boolean
   entry: any
   externals?: any
