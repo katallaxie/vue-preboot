@@ -12,12 +12,12 @@
     "email": "sebastian@katallaxie.me"
   },
   "bundlesize": [{
-      "path": "./public/vendor.*.js",
-      "maxSize": "350 kB"
+      "path": "./public/main.*.js",
+      "maxSize": "250 kB"
     },
     {
       "path": "./public/polyfills.*.js",
-      "maxSize": "120 kB"
+      "maxSize": "25 kB"
     }
   ],
   "homepage": "https://github.com/katallaxie/vue-preboot",
@@ -83,7 +83,7 @@
     "brotli-webpack-plugin": "^0.5.0",
     "bundlesize": "^0.16.0",
     "compression-webpack-plugin": "^1.0.1",
-    "copy-webpack-plugin": "^4.2.0",
+    "copy-webpack-plugin": "^4.4.2",
     "css-loader": "^0.28.1",
     "cssnano": "^3.10.0",
     "csx": "^8.5.0",
@@ -152,7 +152,7 @@
     "url": "https://github.com/katallaxie/vue-preboot/issues"
   },
   "engines": {
-    "node": ">= 6.9.1",
+    "node": ">= 6.11.5",
     "npm": ">= 3"
   }
 }
