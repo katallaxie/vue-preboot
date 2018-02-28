@@ -111,6 +111,8 @@ export const devConfig = () => {
 export const prodConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig
 
+  config.mode = 'production'
+
   config.devtool = false
 
   config.module = {

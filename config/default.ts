@@ -8,7 +8,6 @@ import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
 // import * as HtmlElementsWebpackPlugin from 'html-elements-webpack-plugin'
 import * as CopyWebpackPlugin from 'copy-webpack-plugin'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
-// import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin'
 
 // optimization
 import * as BrotliPlugin from 'brotli-webpack-plugin'
