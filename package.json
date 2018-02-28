@@ -1,6 +1,6 @@
 {
   "name": "vue-preboot",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A teeny Vue.js template to get your next project booted. It is opinionated and powered by Webpack",
   "keywords": [
     "vue",
@@ -11,8 +11,7 @@
     "name": "Sebastian Döll",
     "email": "sebastian@katallaxie.me"
   },
-  "bundlesize": [
-    {
+  "bundlesize": [{
       "path": "./public/vendor.*.js",
       "maxSize": "350 kB"
     },
