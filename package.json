@@ -52,7 +52,7 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "@axelspringer/mango-ssr": "^0.2.2",
+    "@axelspringer/mango-ssr": "^0.4.0",
     "@types/node": "^9.4.7",
     "core-js": "^2.5.1",
     "cross-env": "^5.1.4",
