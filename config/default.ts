@@ -179,19 +179,6 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         threshold: 10240,
         minRatio: 0.8
       }),
-      // This enables tree shaking of the vendor modules
-      // new CommonsChunkPlugin({
-      //   name: 'vendor',
-      //   chunks: ['main'],
-      //   minChunks: module => /node_modules/.test(module.resource)
-      // }),
-      // new CommonsChunkPlugin({
-      //   name: ['polyfills', 'vendor'].reverse()
-      // }),
-      // new CommonsChunkPlugin({
-      //   name: 'manifest',
-      //   minChunks: Infinity
-      // }),
       new CompressionPlugin({
         asset: '[path].gz[query]',
         algorithm: 'gzip',

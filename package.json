@@ -11,7 +11,8 @@
     "name": "Sebastian Döll",
     "email": "sebastian@katallaxie.me"
   },
-  "bundlesize": [{
+  "bundlesize": [
+    {
       "path": "./public/main.*.js",
       "maxSize": "250 kB"
     },
@@ -85,7 +86,6 @@
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "cssnano": "^3.10.0",
-    "csx": "^8.5.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "faker": "^4.1.0",
     "html-elements-webpack-plugin": "^1.0.1",

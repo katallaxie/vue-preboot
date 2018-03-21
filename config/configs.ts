@@ -24,7 +24,7 @@ import {
 } from './custom'
 
 // dll's
-import { polyfills } from './dll'
+import { polyfills, vendor } from './dll'
 import { CustomSSRConfig } from './custom'
 
 // config
@@ -122,6 +122,15 @@ export const prodConfig = () => {
   config.entry = {
     main: './src/browser',
     polyfills: polyfills()
+  }
+
+  config.optimization = {
+    noEmitOnErrors: true, // NoEmitOnErrorsPlugin
+    concatenateModules: true,
+    splitChunks: {
+      name: false,
+      chunks: 'all'
+    }
   }
 
   config.performance = {

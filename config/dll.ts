@@ -9,8 +9,6 @@ export function polyfills() {
 
 export function vendor() {
   return [
-    'csx',
-    'typestyle',
     'vue-class-component',
     'vue-router',
     'vue',
