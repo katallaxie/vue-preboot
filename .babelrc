@@ -1,9 +1,10 @@
 {
   "presets": [
-    "env"
-  ],
-  "plugins": [
-    "transform-vue-jsx",
-    "syntax-dynamic-import"
+    "vue-app", [
+      "babel-preset-env",
+      {
+        "modules": false
+      }
+    ]
   ]
 }

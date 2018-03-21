@@ -1,0 +1,26 @@
+{
+  "globals": {
+    "ts-jest": {
+      "tsConfigFile": "tsconfig.es2015.json",
+      "useBabelrc": true
+    }
+  },
+  "transform": {
+    "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+  },
+  "moduleDirectories": [
+    "node_modules",
+    "<rootDir>/"
+  ],
+  "moduleNameMapper": {
+    "^vue$": "vue/dist/vue.common.js"
+  },
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json"
+  ]
+}

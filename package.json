@@ -11,8 +11,7 @@
     "name": "Sebastian Döll",
     "email": "sebastian@katallaxie.me"
   },
-  "bundlesize": [
-    {
+  "bundlesize": [{
       "path": "./public/main.*.js",
       "maxSize": "250 kB"
     },
@@ -28,7 +27,8 @@
     "build:server": "cross-env NODE_ENV=production webpack --progress --profile --bail --debug",
     "build:client": "cross-env NODE_ENV=production webpack --progress --profile --bail --debug",
     "build": "npm run build:client && npm run build:server",
-    "ci": "npm test --runInBand && bundlesize",
+    "ci": "npm-run-all -s test:ci e2e",
+    "e2e": "npm-run-all -p -r server test:e2e",
     "clean:public": "npm run rimraf -- public",
     "clean:install": "npm set progress=false && npm install",
     "clean:start": "npm run clean:public && start",
@@ -45,15 +45,18 @@
     "prod": "cross-env NODE_ENV=production",
     "server": "cross-env NODE_ENV=production ./node_modules/.bin/mango-ssr --serve public --bundle public/vue-ssr-server-bundle.json -m public/vue-ssr-client-manifest.json -t public/index.html -w config/configs",
     "start": "cross-env NODE_ENV=development ./node_modules/.bin/mango-ssr --serve public --bundle public/vue-ssr-server-bundle.json -m public/vue-ssr-client-manifest.json -t public/index.html -w config/configs",
-    "test": "cross-env NODE_ENV=testing npm run jest",
-    "test:bundlesize": "npm run bundlesize",
+    "test": "cross-env NODE_ENV=test npm run jest -- --coverage --config jest.test.json",
+    "test:ci": "npm run test --runInBand",
+    "test:e2e": "cross-env NODE_ENV=test npm run jest -- --config jest.e2e.json",
+    "test:bundlesize": "bundlesize",
     "watch:test": "jest --watch",
     "webpack-dev-server": "webpack-dev-server",
     "webpack": "webpack"
   },
   "dependencies": {
-    "@axelspringer/mango-ssr": "^0.2.2",
+    "@axelspringer/mango-ssr": "^0.4.1",
     "@types/node": "^9.4.7",
+    "@types/puppeteer": "^1.2.0",
     "core-js": "^2.5.1",
     "cross-env": "^5.1.4",
     "ts-node": "^5.0.1",
@@ -75,40 +78,37 @@
     "autoprefixer": "^8.1.0",
     "avoriaz": "^6.0.1",
     "awesome-typescript-loader": "^5.0.0-1",
-    "babel-core": "^6.26.0",
-    "babel-helper-vue-jsx-merge-props": "^2.0.2",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-vue-jsx": "^3.7.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-vue-app": "^2.0.0",
     "brotli-webpack-plugin": "^0.5.0",
     "bundlesize": "^0.16.0",
     "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.1",
+    "css-loader": "^0.28.11",
     "cssnano": "^3.10.0",
     "csx": "^8.5.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "faker": "^4.1.0",
     "html-elements-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "github:webpack-contrib/html-webpack-plugin",
+    "html-webpack-plugin": "^3.0.7",
     "http-server": "^0.11.0",
     "jest": "^22.0.0",
     "npm-run-all": "^4.1.2",
     "npm-scripts-help": "^0.8.0",
     "offline-plugin": "^4.8.4",
     "optimize-js-plugin": "0.0.4",
-    "postcss-loader": "^2.0.8",
+    "postcss-loader": "^2.1.3",
     "prettier": "^1.11.1",
+    "puppeteer": "^1.2.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.20.3",
-    "ts-jest": "^22.4.1",
+    "ts-jest": "^22.4.2",
     "tslint": "^5.7.0",
     "tslint-config-prettier": "^1.10.0",
     "tslint-loader": "^3.6.0",
     "typestyle": "^1.7.2",
-    "uglifyjs-webpack-plugin": "^1.2.3",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "vue-jest": "^2.2.1",
     "vue-loader": "^14.2.1",
-    "vue-jest": "^2.1.1",
     "vue-property-decorator": "^6.0.0",
     "vue-ssr-webpack-plugin": "^3.0.0",
     "vue-template-compiler": "^2.5.16",
@@ -118,32 +118,6 @@
     "webpack-dev-server": "^3.1.1",
     "webpack-hot-middleware": "^2.21.2",
     "webpack-merge": "^4.1.1"
-  },
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "tsconfig.es2015.json",
-        "useBabelrc": true
-      }
-    },
-    "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "moduleDirectories": [
-      "node_modules",
-      "<rootDir>/"
-    ],
-    "moduleNameMapper": {
-      "^vue$": "vue/dist/vue.common.js"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json"
-    ]
   },
   "repository": {
     "type": "git",

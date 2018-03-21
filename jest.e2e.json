@@ -1,0 +1,23 @@
+{
+  "globals": {
+    "ts-jest": {
+      "tsConfigFile": "tsconfig.json",
+      "useBabelrc": true
+    }
+  },
+  "transform": {
+    "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+  },
+  "moduleDirectories": [
+    "node_modules",
+    "<rootDir>/"
+  ],
+  "testRegex": "(/__tests__/.*|(\\.|/)(e2e))\\.(jsx?|tsx?)$",
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json"
+  ]
+}

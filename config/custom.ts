@@ -114,7 +114,7 @@ export const CustomHeadTags: HeadTags = {
     { name: 'msapplication-TileColor', content: '#00bcd4' },
     { name: 'msapplication-TileImage', content: '/icon/ms-icon-144x144.png', '=content': true },
     { name: 'theme-color', content: '#00bcd4' },
-    { name: 'description', content: 'A teeny Vue.js template to get your next project booted. It is opinionated and powered by Webpack' },
+    { name: 'description', content: 'A teeny Vue.js template to get your next project booted.' },
   ],
   title: 'Vue.js Preboot'
 }

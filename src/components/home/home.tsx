@@ -13,7 +13,7 @@ export class Home extends Vue {
       <div class='container-fluid'>
         <div class='row'>
           <div class='col'>
-            <div class={biggerClass}>
+            <div data-testid='greeting' class={biggerClass}>
               {this.message}
             </div >
           </div>
