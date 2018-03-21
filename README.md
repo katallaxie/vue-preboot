@@ -20,7 +20,7 @@
 * [Jest](https://facebook.github.io/jest)
 * [Docker](https://docker.io)
 * [Prettier](https://github.com/prettier/prettier)
-* [Puppeterr](https://github.com/GoogleChrome/puppeteer)
+* [Puppeteer](https://github.com/GoogleChrome/puppeteer)
 * [TypeStyle](https://github.com/typestyle/typestyle)
 * [Vuex](https://github.com/vuejs/vuex)
 * [Vue.js Router](https://github.com/vuejs/vue-router)
