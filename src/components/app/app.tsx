@@ -4,7 +4,7 @@ import Component from 'vue-class-component'
 @Component
 export class App extends Vue {
 
-  public render(h) {
+  public render() {
     return (
       <div id='app'>
         <router-view></router-view>

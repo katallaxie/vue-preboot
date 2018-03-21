@@ -8,7 +8,7 @@ import { biggerClass } from './style'
 export class Home extends Vue {
   @Getter('message') public message
 
-  public render(h) {
+  public render() {
     return (
       <div class='container-fluid'>
         <div class='row'>
