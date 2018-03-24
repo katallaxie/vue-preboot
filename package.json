@@ -81,7 +81,7 @@
     "awesome-typescript-loader": "^5.0.0-1",
     "babel-preset-vue-app": "^2.0.0",
     "brotli-webpack-plugin": "^0.5.0",
-    "bundlesize": "^0.16.0",
+    "bundlesize": "^0.17.0",
     "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
