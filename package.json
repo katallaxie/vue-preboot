@@ -55,7 +55,7 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "@axelspringer/mango-ssr": "^0.6.1",
+    "@axelspringer/mango-ssr": "^0.8.1",
     "@types/node": "^9.4.7",
     "@types/puppeteer": "^1.2.0",
     "core-js": "^2.5.1",
