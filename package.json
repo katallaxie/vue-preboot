@@ -60,7 +60,7 @@
     "@types/puppeteer": "^1.2.0",
     "core-js": "^2.5.1",
     "cross-env": "^5.1.4",
-    "ts-node": "^5.0.1",
+    "ts-node": "^6.0.0",
     "tslib": "^1.5.0",
     "typescript": "2.7.2",
     "vue": "^2.5.16",
