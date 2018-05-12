@@ -24,7 +24,7 @@ import {
 } from './custom'
 
 // dll's
-import { polyfills, vendor } from './dll'
+import { polyfills } from './dll'
 import { CustomSSRConfig } from './custom'
 
 // config
