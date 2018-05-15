@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "@axelspringer/mango-ssr": "^1.0.0-alpha.14",
-    "@types/node": "^6.0.110",
+    "@types/node": "^10.0.9",
     "@types/puppeteer": "^1.2.0",
     "core-js": "^2.5.1",
     "cross-env": "^5.1.4",
