@@ -1,4 +1,5 @@
 module.exports = {
+  forceSSL: false,
   serve: 'public',
   bundle: 'public/vue-ssr-server-bundle.json',
   manifest: 'public/vue-ssr-client-manifest.json',
