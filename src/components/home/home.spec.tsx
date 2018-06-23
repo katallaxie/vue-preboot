@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import { Home } from './home';
+import { Home } from './home'
 import { mount } from 'avoriaz'
-import Vuex from 'vuex';
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
