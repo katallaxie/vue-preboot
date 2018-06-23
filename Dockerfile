@@ -1,5 +1,5 @@
 # Builds a Docker to deliver SSR
-FROM node:carbon
+FROM node:latest
 
 # create app directory
 WORKDIR /usr/src/app
