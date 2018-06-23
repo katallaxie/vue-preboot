@@ -1,3 +1,5 @@
+import { WebpackConfig } from './webpack'
+
 // node
 import * as process from 'process'
 
@@ -127,6 +129,7 @@ export const prodConfig = () => {
   config.optimization = {
     noEmitOnErrors: true, // NoEmitOnErrorsPlugin
     concatenateModules: true,
+    minimize: true,
     splitChunks: {
       name: false,
       chunks: 'all'

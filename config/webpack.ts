@@ -1,4 +1,4 @@
-interface WebpackConfig {
+export interface WebpackConfig {
   cache?: boolean
   target?: string
   mode?: string
@@ -50,30 +50,30 @@ interface WebpackConfig {
   }
 }
 
-type DefaultConfig = {
+export type DefaultConfig = {
   rules: any[]
   plugins: any[]
 }
 
-interface CustomConfig {
+export interface CustomConfig {
   rules: any[]
   plugins: any[]
 }
 
-interface HeadTags {
+export interface HeadTags {
   link?: any[]
   meta?: any[]
   title?: string
 }
 
-interface WebpackLoader {
+export interface WebpackLoader {
   enforce?: any
   test?: any
   use?: any
   exclude?: any
 }
 
-interface DefaultLoaders {
+export interface DefaultLoaders {
   tsLintLoader?: WebpackLoader
   sourceMapLoader?: WebpackLoader
   tsLoader?: WebpackLoader

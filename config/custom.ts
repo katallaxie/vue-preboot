@@ -12,8 +12,8 @@
  * - Dev Server Configuration
  *
  */
-// import { root } from './helpers'
 
+import { CustomConfig, HeadTags } from './webpack'
 import * as Autoprefixer from 'autoprefixer'
 import * as CssNano from 'cssnano'
 
