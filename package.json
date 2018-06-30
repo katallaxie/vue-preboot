@@ -101,7 +101,7 @@
     "puppeteer": "^1.2.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
-    "ts-jest": "^22.4.2",
+    "ts-jest": "^23.0.0",
     "tslint": "^5.7.0",
     "tslint-config-prettier": "^1.10.0",
     "tslint-loader": "^3.6.0",
