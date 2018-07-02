@@ -1,6 +1,6 @@
 {
   "name": "vue-preboot",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A teeny Vue.js template to get your next project booted. It is opinionated and powered by Webpack",
   "keywords": [
     "vue",
