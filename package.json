@@ -11,8 +11,7 @@
     "name": "Sebastian Döll",
     "email": "sebastian@katallaxie.me"
   },
-  "bundlesize": [
-    {
+  "bundlesize": [{
       "path": "./public/main.*.js",
       "maxSize": "250 kB"
     },
@@ -28,7 +27,7 @@
     "build:server": "cross-env NODE_ENV=production webpack --progress --profile --bail --debug",
     "build:client": "cross-env NODE_ENV=production webpack --progress --profile --bail --debug",
     "build": "npm run build:client && npm run build:server",
-    "ci": "npm-run-all -s test:ci e2e",
+    "ci": "npm-run-all -s test:ci",
     "e2e": "npm-run-all -p -r server test:e2e",
     "clean:public": "npm run rimraf -- public",
     "clean:install": "npm set progress=false && npm install",
