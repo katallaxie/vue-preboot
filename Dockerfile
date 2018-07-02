@@ -1,5 +1,5 @@
 # Builds a Docker to deliver SSR
-FROM node:latest
+FROM andersnormal/fluffy:latest
 
 # create app directory
 WORKDIR /usr/src/app
@@ -14,5 +14,6 @@ RUN npm install --only production
 COPY . .
 
 # run on 8080
-EXPOSE 8080
-CMD [ "npm", "run", "server" ]
+EXPOSE 80
+
+CMD ["/start.sh", "--bundle", "public/vue-ssr-server-bundle.json", "--manifest", "public/vue-ssr-client-manifest.json", "--template", "public/index.html" ]

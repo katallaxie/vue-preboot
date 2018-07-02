@@ -22,7 +22,7 @@ import * as CssNano from 'cssnano'
 // ssr
 import * as VueSSRClientPlugin from 'vue-server-renderer/client-plugin'
 import * as VueSSRServerPlugin from 'vue-server-renderer/server-plugin'
-import { HotModuleReplacementPlugin, NamedModulesPlugin } from 'webpack'
+import { NamedModulesPlugin } from 'webpack'
 
 import { CustomHeadTags, CustomCopyFolders } from './custom'
 
@@ -137,7 +137,6 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
       }),
       new NamedModulesPlugin(),
       new CopyWebpackPlugin([...DefaultCopyFolders, ...CustomCopyFolders]),
-      new HotModuleReplacementPlugin(),
       new VueSSRClientPlugin(),
       // ManifestPlugin
     ]
