@@ -9,7 +9,7 @@ export interface WebpackConfig {
   output: any
   module?: any
   context?: any
-  plugins?: Array<any>
+  plugins?: any[]
   performance?:
   | boolean
   | {
@@ -19,8 +19,8 @@ export interface WebpackConfig {
     maxAssetSize?: string
   }
   resolve?: {
-    extensions?: Array<string>
-    modules?: Array<string>
+    extensions?: string[]
+    modules?: string[]
     alias?: any
   }
   devServer?: {

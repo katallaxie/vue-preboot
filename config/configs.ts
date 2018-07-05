@@ -48,13 +48,13 @@ export const commonConfig = () => {
 
   config.module = {
     rules: [
-      ...DefaultCommonConfig().rules,
+      ...DefaultCommonConfig(envConfig).rules,
       ...CustomCommonConfig.rules
     ]
   }
 
   config.plugins = [
-    ...DefaultCommonConfig().plugins,
+    ...DefaultCommonConfig(envConfig).plugins,
     ...CustomCommonConfig.plugins
   ]
 
@@ -95,7 +95,7 @@ export const devConfig = () => {
   }
 
   config.entry = {
-    app: [].concat('./src/browser')
+    app: [...polyfills()].concat('./src/browser')
   }
 
   config.output = {
@@ -122,17 +122,38 @@ export const prodConfig = () => {
   }
 
   config.entry = {
-    main: './src/browser',
-    polyfills: polyfills()
+    main: [...polyfills(), './src/browser'],
+    pwa: './src/pwa'
   }
 
   config.optimization = {
     noEmitOnErrors: true, // NoEmitOnErrorsPlugin
     concatenateModules: true,
-    minimize: true,
+    minimize: false,
     splitChunks: {
-      name: false,
-      chunks: 'all'
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2,
+          maxInitialRequests: 5, // The default limit is too small to showcase the effect
+          minSize: 0 // This is example is too small to create commons chunks
+        },
+        polyfills: {
+          test: (m) => polyfills().indexOf(m.rawRequest) > -1,
+          chunks: 'initial',
+          name: 'polyfills',
+          priority: -10,
+          enforce: true
+        },
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          priority: -20,
+          enforce: true
+        },
+        default: false
+      }
     }
   }
 
@@ -143,9 +164,9 @@ export const prodConfig = () => {
   config.output = {
     path: root(`public`),
     publicPath: '/static/',
-    filename: '[name].[chunkhash].bundle.js',
-    sourceMapFilename: '[name].[chunkhash].bundle.map',
-    chunkFilename: '[id].[chunkhash].chunk.js'
+    filename: '[name].[hash].bundle.js',
+    sourceMapFilename: '[name].[hash].bundle.map',
+    chunkFilename: '[name].[chunkhash].chunk.js'
   }
 
   config.plugins = [
@@ -186,7 +207,7 @@ export const ssrConfig = () => {
 
   config.plugins = [
     ...DefaultSsrConfig(envConfig).plugins,
-    ...CustomProdConfig.plugins
+    ...CustomSSRConfig.plugins
   ]
 
   config.externals = Object.keys(require('../package.json').dependencies)

@@ -1,15 +1,11 @@
-import runtime from 'offline-plugin/runtime'
+import { inBrowser } from './utils'
 
-runtime.install({
-  // When an update is ready, tell ServiceWorker to take control immediately:
-  onUpdateReady() {
-    console.log('update ready')
-    runtime.applyUpdate()
-  },
-
-  // Reload to get the new version:
-  onUpdated() {
-    console.log('updated')
-    location.reload()
-  }
-})
+if (inBrowser && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/static/sw.js').then(registration => {
+      console.log('SW registered: ', registration)
+    }).catch(registrationError => {
+      console.error('SW registration failed: ', registrationError)
+    });
+  })
+}

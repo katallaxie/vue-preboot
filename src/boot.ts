@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import Vue from 'vue'
 
+import './boot.css'
+
 // create function
 export default function () {
   // route state store

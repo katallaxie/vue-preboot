@@ -14,12 +14,7 @@
  */
 
 import { CustomConfig, HeadTags } from './webpack'
-import * as Autoprefixer from 'autoprefixer'
-import * as CssNano from 'cssnano'
-
-import * as ExtractTextPlugin from 'extract-text-webpack-plugin'
-
-const bootCss = new ExtractTextPlugin('boot.css')
+import * as WorkboxPlugin from 'workbox-webpack-plugin'
 
 // to copy folders
 export const CustomCopyFolders = [
@@ -29,27 +24,10 @@ export const CustomCopyFolders = [
 // common
 export const CustomCommonConfig: CustomConfig = {
   plugins: [
-    bootCss,
     // new PreloadWebpackPlugin()
   ],
   rules: [
-    {
-      test: /boot\.css$/,
-      use: ExtractTextPlugin.extract({
-        use: [
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [
-                Autoprefixer(),
-                CssNano()
-              ]
-            }
-          }
-        ]
-      })
-    }
+
   ]
 }
 
@@ -66,17 +44,17 @@ export const CustomDevConfig: CustomConfig = {
 // production
 export const CustomProdConfig: CustomConfig = {
   plugins: [
-    // new HtmlCriticalPlugin({
-    //   base: root(`public`),
-    //   src: 'index.html',
-    //   dest: 'index.html',
-    //   inline: true,
-    //   minify: false,
-    //   extract: true,
-    //   penthouse: {
-    //     blockJSRequests: false,
-    //   }
-    // })
+    new WorkboxPlugin.GenerateSW({
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      include: [/\.html$/, /\.js$/, /\.css$/, /\.png$/, /\.woff2?$|\.ttf$|\.eot$|\.svg$/],
+      swDest: 'sw.js',
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [{
+        urlPattern: '/static/',
+        handler: 'cacheFirst'
+      }]
+    }),
   ],
   rules: [
 

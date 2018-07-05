@@ -6,14 +6,15 @@ import {
 } from 'webpack'
 import { CheckerPlugin } from 'awesome-typescript-loader'
 import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
-// import * as HtmlElementsWebpackPlugin from 'html-elements-webpack-plugin'
 import * as CopyWebpackPlugin from 'copy-webpack-plugin'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
+
 
 // optimization
 import * as BrotliPlugin from 'brotli-webpack-plugin'
 import * as CompressionPlugin from 'compression-webpack-plugin'
 import * as OptimizeJsPlugin from 'optimize-js-plugin'
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 // postCss
 import * as Autoprefixer from 'autoprefixer'
@@ -74,8 +75,9 @@ export const loader: DefaultLoaders = {
     ]
   },
   cssLoader: {
-    test: /\.css$/,
+    test: /\.(sa|sc|c)ss$/,
     use: [
+      MiniCssExtractPlugin.loader,
       {
         loader: 'css-loader',
         options: {
@@ -93,8 +95,7 @@ export const loader: DefaultLoaders = {
           ]
         }
       }
-    ],
-    exclude: /boot\.css/
+    ]
   },
   htmlLoader: {
     test: /\.html$/,
@@ -107,15 +108,18 @@ export const loader: DefaultLoaders = {
   }
 }
 
-export const DefaultCommonConfig = (): DefaultConfig => {
+export const DefaultCommonConfig = ({ isDev }): DefaultConfig => {
   return {
     rules: [loader.cssLoader, loader.htmlLoader, loader.fileLoader],
     plugins: [
       new CheckerPlugin(),
       new TsConfigPathsPlugin(),
-      // new HtmlElementsWebpackPlugin({
-      //   headTags: Object.assign({}, { link: CustomHeadTags.link, meta: CustomHeadTags.meta })
-      // })
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: isDev ? '[name].css' : '[name].[hash].css',
+        chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
+      }),
     ]
   }
 }
@@ -190,12 +194,7 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         template: './src/index.html',
         title: CustomHeadTags.title,
         inject: false,
-        minify: {
-          minifyJS: true,
-          removeComments: true, // this is for ssr
-          collapseWhitespace: true,
-          ignoreCustomComments: [/vue-ssr-outlet/]
-        }
+        minify: false
       }),
       // new ScriptExtHtmlWebpackPlugin({
       //   sync: /polyfills|vendor/,

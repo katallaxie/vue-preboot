@@ -6,13 +6,3 @@ export function polyfills() {
     'core-js/es6/promise',
   ]
 }
-
-export function vendor() {
-  return [
-    'vue-class-component',
-    'vue-router',
-    'vue',
-    'vuex-class',
-    'vuex'
-  ]
-}
