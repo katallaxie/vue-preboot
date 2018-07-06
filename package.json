@@ -86,7 +86,7 @@
     "bundlesize": "^0.17.0",
     "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.11",
+    "css-loader": "^1.0.0",
     "cssnano": "^3.10.0",
     "faker": "^4.1.0",
     "html-webpack-plugin": "^3.0.7",
