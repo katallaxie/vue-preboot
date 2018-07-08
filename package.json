@@ -11,8 +11,11 @@
     "name": "Sebastian Döll",
     "email": "sebastian@katallaxie.me"
   },
-  "bundlesize": [
-    {
+  "browserslist": [
+    "last 2 versions",
+    ">1%"
+  ],
+  "bundlesize": [{
       "path": "./public/main.*.js",
       "maxSize": "250 kB"
     },
