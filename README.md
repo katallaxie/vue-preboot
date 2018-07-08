@@ -62,7 +62,7 @@ Open [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http:
 # builds the prod version of the client and the needed SSR bundle
 npm run build:docker
 
-# runs the server
+# runs the server `npm run server`
 docker run -p 8080:80 -t vue-preboot
 ```
 

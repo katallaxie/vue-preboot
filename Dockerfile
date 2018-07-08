@@ -1,5 +1,19 @@
-# Builds a Docker to deliver SSR
-FROM andersnormal/fluffy:latest
+# Use the official node image
+#  from https://hub.docker.com/r/library/node/
+FROM node:10.5.0-alpine
+
+# install nginx and link logs
+RUN apk --no-cache add nginx bash \
+  && ln -sf /dev/stdout /var/log/nginx/access.log \
+  && ln -sf /dev/stderr /var/log/nginx/error.log \
+  && mkdir /var/run/nginx
+
+# nginx
+ADD conf/default.conf /etc/nginx/conf.d/default.conf
+ADD conf/nginx.conf /etc/nginx/nginx.conf
+
+# start script
+ADD scripts/start.sh /start.sh
 
 # create app directory
 WORKDIR /usr/src/app
@@ -13,7 +27,6 @@ RUN npm install --only production
 # assets
 COPY . .
 
-# run on 8080
 EXPOSE 80
 
-CMD ["/start.sh", "--bundle", "public/vue-ssr-server-bundle.json", "--manifest", "public/vue-ssr-client-manifest.json", "--template", "public/index.html" ]
+CMD ["/start.sh"]
