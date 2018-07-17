@@ -82,7 +82,7 @@
     "@types/jasmine": "^2.6.3",
     "@types/jest": "^23.1.4",
     "@types/uglify-js": "^3.0.0",
-    "autoprefixer": "^8.6.5",
+    "autoprefixer": "^9.0.0",
     "avoriaz": "^6.0.1",
     "awesome-typescript-loader": "^5.0.0-1",
     "babel-preset-vue-app": "^2.0.0",
