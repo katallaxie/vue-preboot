@@ -23,6 +23,7 @@
       false,
       "case-insensitive"
     ],
+    "semicolon": false,
     "quotemark": [
       true,
       "single",

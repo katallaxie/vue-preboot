@@ -1,13 +1,9 @@
 import { App } from './components/app'
 import { sync } from 'vuex-router-sync'
-import router from './router'
-import store from './store'
 import Vue from 'vue'
 
-import './boot.css'
-
 // create function
-export default function () {
+export default function(store, router) {
   // route state store
   sync(store, router)
 
@@ -15,7 +11,7 @@ export default function () {
   const app = new Vue({
     router,
     store,
-    render: (h) => h(App)
+    render: h => h(App)
   })
 
   return { app, router, store }

@@ -1,7 +1,18 @@
 import bootstrap from './boot'
+import createStore from './store'
+import createRouter from './router'
+
+// create store
+const store = createStore()
+
+// create router
+const router = createRouter()
+
+// import css
+import './boot.css'
 
 // bootstraping app
-const { app, router, store } = bootstrap()
+const { app } = bootstrap(store, router)
 
 // mounting new initial state
 if (window.__INITIAL_STATE__) {
@@ -21,18 +32,22 @@ router.onReady(() => {
     }
 
     const activated = matched.filter((component, i) => {
-      return diffed || (diffed = (prevMatched[i] !== component))
+      return diffed || (diffed = prevMatched[i] !== component)
     })
     if (!activated.length) {
       return next()
     }
-    Promise.all(activated.map((c: any) => {
-      if (c.asyncData) {
-        return c.asyncData({ store, route: to })
-      }
-    })).then(() => {
-      next()
-    }).catch(next)
+    Promise.all(
+      activated.map((c: any) => {
+        if (c.asyncData) {
+          return c.asyncData({ store, route: to })
+        }
+      })
+    )
+      .then(() => {
+        next()
+      })
+      .catch(next)
   })
 
   // actually mount to DOM
