@@ -15,8 +15,7 @@
     "last 2 versions",
     ">1%"
   ],
-  "bundlesize": [
-    {
+  "bundlesize": [{
       "path": "./public/main.*.js",
       "maxSize": "250 kB"
     },
@@ -131,7 +130,7 @@
     "url": "https://github.com/katallaxie/vue-preboot/issues"
   },
   "engines": {
-    "node": ">= 6.11.5",
-    "npm": ">= 3"
+    "node": ">= 8.11.4",
+    "npm": ">= 5"
   }
 }
