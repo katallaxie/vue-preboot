@@ -1,37 +1,34 @@
 /*** DO NOT TOUCH ***/
-import { DefaultConfig, DefaultLoaders } from './webpack'
-import { root } from './helpers'
-import {
-  DefinePlugin
-} from 'webpack'
-import { CheckerPlugin } from 'awesome-typescript-loader'
-import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
-import * as CopyWebpackPlugin from 'copy-webpack-plugin'
-import * as HtmlWebpackPlugin from 'html-webpack-plugin'
-
+import { DefaultConfig, DefaultLoaders } from './webpack';
+import { root } from './helpers';
+import { DefinePlugin } from 'webpack';
+import { CheckerPlugin } from 'awesome-typescript-loader';
+import { TsConfigPathsPlugin } from 'awesome-typescript-loader';
+import * as CopyWebpackPlugin from 'copy-webpack-plugin';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
 // optimization
-import * as BrotliPlugin from 'brotli-webpack-plugin'
-import * as CompressionPlugin from 'compression-webpack-plugin'
-import * as OptimizeJsPlugin from 'optimize-js-plugin'
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import * as BrotliPlugin from 'brotli-webpack-plugin';
+import * as CompressionPlugin from 'compression-webpack-plugin';
+import * as OptimizeJsPlugin from 'optimize-js-plugin';
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 // postCss
-import * as Autoprefixer from 'autoprefixer'
-import * as CssNano from 'cssnano'
+import * as Autoprefixer from 'autoprefixer';
+import * as CssNano from 'cssnano';
 
 // ssr
-import * as VueSSRClientPlugin from 'vue-server-renderer/client-plugin'
-import * as VueSSRServerPlugin from 'vue-server-renderer/server-plugin'
-import { NamedModulesPlugin } from 'webpack'
+import * as VueSSRClientPlugin from 'vue-server-renderer/client-plugin';
+import * as VueSSRServerPlugin from 'vue-server-renderer/server-plugin';
+import { NamedModulesPlugin } from 'webpack';
 
-import { CustomHeadTags, CustomCopyFolders } from './custom'
+import { CustomHeadTags, CustomCopyFolders } from './custom';
 
 // copy
 export const DefaultCopyFolders = [
   { from: 'src/static', ignore: ['favicon.ico'] },
   { from: 'src/meta' }
-]
+];
 
 export const loader: DefaultLoaders = {
   tsLintLoader: {
@@ -74,25 +71,26 @@ export const loader: DefaultLoaders = {
       }
     ]
   },
+  fontLoader: {
+    test: /\.(ttf|eot|woff|woff2)$/,
+    use: {
+      loader: 'file-loader',
+      options: {
+        name: 'fonts/[name].[ext]'
+      }
+    }
+  },
   cssLoader: {
     test: /\.(sa|sc|c)ss$/,
     use: [
       MiniCssExtractPlugin.loader,
       {
-        loader: 'css-loader',
-        options: {
-          importLoader: 1,
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
-        }
+        loader: 'css-loader'
       },
       {
         loader: 'postcss-loader',
         options: {
-          plugins: () => [
-            Autoprefixer(),
-            CssNano()
-          ]
+          plugins: () => [Autoprefixer(), CssNano()]
         }
       }
     ]
@@ -106,11 +104,16 @@ export const loader: DefaultLoaders = {
     test: /\.(jpg|png|gif)$/,
     use: 'file-loader'
   }
-}
+};
 
 export const DefaultCommonConfig = ({ isDev }): DefaultConfig => {
   return {
-    rules: [loader.cssLoader, loader.htmlLoader, loader.fileLoader],
+    rules: [
+      loader.cssLoader,
+      loader.fontLoader,
+      loader.htmlLoader,
+      loader.fileLoader
+    ],
     plugins: [
       new CheckerPlugin(),
       new TsConfigPathsPlugin(),
@@ -118,11 +121,11 @@ export const DefaultCommonConfig = ({ isDev }): DefaultConfig => {
         // Options similar to the same options in webpackOptions.output
         // both options are optional
         filename: isDev ? '[name].css' : '[name].[hash].css',
-        chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
-      }),
+        chunkFilename: isDev ? '[id].css' : '[id].[hash].css'
+      })
     ]
-  }
-}
+  };
+};
 
 export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -131,7 +134,9 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
       new DefinePlugin({
         __DEV__: isDev,
         __PROD__: !isDev,
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        'process.env.NODE_ENV': JSON.stringify(
+          process.env.NODE_ENV || 'development'
+        ),
         'process.env.VUE_ENV': '"client"'
       }),
       new HtmlWebpackPlugin({
@@ -141,11 +146,11 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
       }),
       new NamedModulesPlugin(),
       new CopyWebpackPlugin([...DefaultCopyFolders, ...CustomCopyFolders]),
-      new VueSSRClientPlugin(),
+      new VueSSRClientPlugin()
       // ManifestPlugin
     ]
-  }
-}
+  };
+};
 
 export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -154,13 +159,15 @@ export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
       new DefinePlugin({
         __DEV__: isDev,
         __PROD__: !isDev,
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        'process.env.NODE_ENV': JSON.stringify(
+          process.env.NODE_ENV || 'development'
+        ),
         'process.env.VUE_ENV': '"server"'
       }),
       new VueSSRServerPlugin()
     ]
-  }
-}
+  };
+};
 
 export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -170,7 +177,9 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
       new DefinePlugin({
         __DEV__: isDev,
         __PROD__: !isDev,
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        'process.env.NODE_ENV': JSON.stringify(
+          process.env.NODE_ENV || 'development'
+        ),
         'process.env.VUE_ENV': '"client"'
       }),
       new OptimizeJsPlugin({
@@ -195,7 +204,7 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         title: CustomHeadTags.title,
         inject: false,
         minify: false
-      }),
+      })
       // new ScriptExtHtmlWebpackPlugin({
       //   sync: /polyfills|vendor/,
       //   defaultAttribute: 'async',
@@ -214,5 +223,5 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
       //   }
       // })
     ]
-  }
-}
+  };
+};

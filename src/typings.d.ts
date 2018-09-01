@@ -1,3 +1,4 @@
+/* tslint:disable interface-name */
 /*
  * Custom Type Definitions
  * When including 3rd party modules you also need to include the type definition for the module
@@ -5,18 +6,18 @@
  */
 
 // support NodeJS modules without type definitions
-declare module '*';
+declare module '*'
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
-declare var System: SystemJS;
-declare var __PROD__: boolean;
-declare var __DEV__: boolean;
+declare var System: SystemJS
+declare var __PROD__: boolean
+declare var __DEV__: boolean
 
 // Window
 interface Window {
-  __INITIAL_STATE__: any;
+  __INITIAL_STATE__: any
 }
 
 interface SystemJS {
-  import: (path?: string) => Promise<any>;
+  import: (path?: string) => Promise<any>
 }
