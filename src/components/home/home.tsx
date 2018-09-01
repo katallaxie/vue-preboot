@@ -6,6 +6,8 @@ import { biggerClass } from './style'
 
 @Component
 export class Home extends Vue {
+  public text = ''
+
   @Getter('home/message')
   public message
 
@@ -18,18 +20,24 @@ export class Home extends Vue {
 
   public render() {
     return (
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
-            <div data-testid="greeting" class={biggerClass}>
-              {this.message}
-              <el-row>
+      <el-container>
+        <el-main>
+          <div data-testid="greeting" class={biggerClass}>
+            <el-row>
+              <el-col md={8}>{this.message}</el-col>
+            </el-row>
+            <el-row>
+              <el-col md={8}>
                 <el-button onClick={this.handleClick}>Do magic ✨</el-button>
-              </el-row>
-            </div>
+                <el-input placeholder="Please input" v-model={this.text} />
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col md={8}>{this.text}</el-col>
+            </el-row>
           </div>
-        </div>
-      </div>
+        </el-main>
+      </el-container>
     )
   }
 }

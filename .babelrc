@@ -8,6 +8,7 @@
     ]
   ],
   "plugins": ["transform-object-rest-spread",
+    "jsx-v-model",
     [
       "component",
       {

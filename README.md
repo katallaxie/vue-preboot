@@ -1,4 +1,5 @@
 # Vue Preboot
+
 [![Taylor Swift](https://img.shields.io/badge/secured%20by-taylor%20swift-brightgreen.svg)](https://twitter.com/SwiftOnSecurity)
 [![Volkswagen](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://github.com/auchenberg/volkswagen)
 [![Build Status](https://travis-ci.org/katallaxie/vue-preboot.svg?branch=master)](https://travis-ci.org/katallaxie/vue-preboot)
@@ -11,20 +12,21 @@
 
 > The boilerplate is opinionated, and nudges devs to do certain things
 
-* [Fluffy](https://github.com/andersnormal/fluffy) ([SSR](https://ssr.vuejs.org) + Hot Module Reload)
-* [Webpack](http://webpack.github.io/) :heartbeat: `4.0.0`
-* [TypeScript](http://www.typescriptlang.org/)
-* [@types](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjgjdrR7u_NAhUQ7GMKHXgpC4EQFggnMAI&url=https%3A%2F%2Fwww.npmjs.com%2F~types&usg=AFQjCNG2PFhwEo88JKo12mrw_4d0w1oNiA&sig2=N69zbO0yN8ET7v4KVCUOKA)
-* [TsLint](http://palantir.github.io/tslint/)
-* [PostCss](https://github.com/postcss/postcss) + [Autoprefixer](https://github.com/postcss/autoprefixer)
-* [Jest](https://facebook.github.io/jest)
-* [Docker](https://docker.io)
-* [Prettier](https://github.com/prettier/prettier)
-* [Puppeteer](https://github.com/GoogleChrome/puppeteer)
-* [TypeStyle](https://github.com/typestyle/typestyle)
-* [Vuex](https://github.com/vuejs/vuex)
-* [Vue.js Router](https://github.com/vuejs/vue-router)
-* Offline Support (PWA)
+- [Fluffy](https://github.com/andersnormal/fluffy) ([SSR](https://ssr.vuejs.org) + Hot Module Reload)
+- [Webpack](http://webpack.github.io/) :heartbeat: `4.0.0`
+- [TypeScript](http://www.typescriptlang.org/)
+- [@types](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjgjdrR7u_NAhUQ7GMKHXgpC4EQFggnMAI&url=https%3A%2F%2Fwww.npmjs.com%2F~types&usg=AFQjCNG2PFhwEo88JKo12mrw_4d0w1oNiA&sig2=N69zbO0yN8ET7v4KVCUOKA)
+- [TsLint](http://palantir.github.io/tslint/)
+- [PostCss](https://github.com/postcss/postcss) + [Autoprefixer](https://github.com/postcss/autoprefixer)
+- [Jest](https://facebook.github.io/jest)
+- [Docker](https://docker.io)
+- [Prettier](https://github.com/prettier/prettier)
+- [Puppeteer](https://github.com/GoogleChrome/puppeteer)
+- [TypeStyle](https://github.com/typestyle/typestyle)
+- [Vuex](https://github.com/vuejs/vuex)
+- [Vue.js Router](https://github.com/vuejs/vue-router)
+- [Element](https://element.eleme.io/)
+- Offline Support (PWA)
 
 ## Quick Start
 
@@ -79,4 +81,5 @@ npm run watch:test
 ```
 
 # License
+
 [MIT](/LICENSE)

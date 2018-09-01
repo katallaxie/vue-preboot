@@ -88,6 +88,7 @@
     "avoriaz": "^6.0.1",
     "awesome-typescript-loader": "^5.0.0-1",
     "babel-plugin-component": "^1.1.1",
+    "babel-plugin-jsx-v-model": "^2.0.3",
     "babel-preset-vue-app": "^2.0.0",
     "brotli-webpack-plugin": "^1.0.0",
     "bundlesize": "^0.17.0",
