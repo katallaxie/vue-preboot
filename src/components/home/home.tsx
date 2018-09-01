@@ -22,9 +22,11 @@ export class Home extends Vue {
     return (
       <el-container>
         <el-main>
-          <div data-testid="greeting" class={biggerClass}>
+          <div class={biggerClass}>
             <el-row>
-              <el-col md={8}>{this.message}</el-col>
+              <el-col class="greeting" md={8}>
+                {this.message}
+              </el-col>
             </el-row>
             <el-row>
               <el-col md={8}>

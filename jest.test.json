@@ -6,14 +6,15 @@
     }
   },
   "transform": {
-    "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    "^.+\\.tsx?$": "ts-jest"
   },
   "moduleDirectories": [
     "node_modules",
     "<rootDir>/"
   ],
   "moduleNameMapper": {
-    "^vue$": "vue/dist/vue.common.js"
+    "^vue$": "vue/dist/vue.common.js",
+    "\\.css$": "<rootDir>/__mocks__/mockStyle.ts"
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "moduleFileExtensions": [
