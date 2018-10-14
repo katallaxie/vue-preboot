@@ -117,7 +117,7 @@
     "typescript": "^3.0.3",
     "uglifyjs-webpack-plugin": "^2.0.0",
     "url-loader": "^1.1.1",
-    "vue-jest": "^2.2.1",
+    "vue-jest": "^3.0.0",
     "vue-loader": "^15.4.2",
     "vue-server-renderer": "^2.5.17",
     "vue-ssr-webpack-plugin": "^3.0.0",
