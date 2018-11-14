@@ -15,17 +15,9 @@
     "strictNullChecks": false,
     "target": "es5",
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es5",
-      "es6"
-    ],
-    "types": [
-      "node"
-    ],
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "lib": ["dom", "es5", "es6"],
+    "types": ["node", "jest"],
+    "typeRoots": ["node_modules/@types"]
   },
   "exclude": [
     "node_modules",

@@ -1,34 +1,34 @@
 /*** DO NOT TOUCH ***/
-import { DefaultConfig, DefaultLoaders } from './webpack';
-import { root } from './helpers';
-import { DefinePlugin } from 'webpack';
-import { CheckerPlugin } from 'awesome-typescript-loader';
-import { TsConfigPathsPlugin } from 'awesome-typescript-loader';
-import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import { DefaultConfig, DefaultLoaders } from './webpack'
+import { root } from './helpers'
+import { DefinePlugin } from 'webpack'
+import { CheckerPlugin } from 'awesome-typescript-loader'
+import { TsConfigPathsPlugin } from 'awesome-typescript-loader'
+import * as CopyWebpackPlugin from 'copy-webpack-plugin'
+import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 
 // optimization
-import * as BrotliPlugin from 'brotli-webpack-plugin';
-import * as CompressionPlugin from 'compression-webpack-plugin';
-import * as OptimizeJsPlugin from 'optimize-js-plugin';
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import * as BrotliPlugin from 'brotli-webpack-plugin'
+import * as CompressionPlugin from 'compression-webpack-plugin'
+import * as OptimizeJsPlugin from 'optimize-js-plugin'
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 // postCss
-import * as Autoprefixer from 'autoprefixer';
-import * as CssNano from 'cssnano';
+import * as Autoprefixer from 'autoprefixer'
+import * as CssNano from 'cssnano'
 
 // ssr
-import * as VueSSRClientPlugin from 'vue-server-renderer/client-plugin';
-import * as VueSSRServerPlugin from 'vue-server-renderer/server-plugin';
-import { NamedModulesPlugin } from 'webpack';
+import * as VueSSRClientPlugin from 'vue-server-renderer/client-plugin'
+import * as VueSSRServerPlugin from 'vue-server-renderer/server-plugin'
+import { NamedModulesPlugin } from 'webpack'
 
-import { CustomHeadTags, CustomCopyFolders } from './custom';
+import { CustomHeadTags, CustomCopyFolders } from './custom'
 
 // copy
 export const DefaultCopyFolders = [
   { from: 'src/static', ignore: ['favicon.ico'] },
   { from: 'src/meta' }
-];
+]
 
 export const loader: DefaultLoaders = {
   tsLintLoader: {
@@ -104,7 +104,7 @@ export const loader: DefaultLoaders = {
     test: /\.(jpg|png|gif)$/,
     use: 'file-loader'
   }
-};
+}
 
 export const DefaultCommonConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -124,8 +124,8 @@ export const DefaultCommonConfig = ({ isDev }): DefaultConfig => {
         chunkFilename: isDev ? '[id].css' : '[id].[hash].css'
       })
     ]
-  };
-};
+  }
+}
 
 export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -149,8 +149,8 @@ export const DefaultDevConfig = ({ isDev }): DefaultConfig => {
       new VueSSRClientPlugin()
       // ManifestPlugin
     ]
-  };
-};
+  }
+}
 
 export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -166,8 +166,8 @@ export const DefaultSsrConfig = ({ isDev }): DefaultConfig => {
       }),
       new VueSSRServerPlugin()
     ]
-  };
-};
+  }
+}
 
 export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
   return {
@@ -192,7 +192,7 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
         minRatio: 0.8
       }),
       new CompressionPlugin({
-        asset: '[path].gz[query]',
+        filename: '[path].gz[query]',
         algorithm: 'gzip',
         test: /\.js$|\.html$/,
         threshold: 2 * 1024,
@@ -223,5 +223,5 @@ export const DefaultProdConfig = ({ isDev }): DefaultConfig => {
       //   }
       // })
     ]
-  };
-};
+  }
+}

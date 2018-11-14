@@ -26,7 +26,7 @@ describe('Home', () => {
 
   it('renders the correct message', () => {
     const wrapper = mount(Home, { store })
-    const message = wrapper.first('.greeting')
+    const message = wrapper.find('.greeting')[0]
     expect(message.text()).toBe('bye!')
   })
 })
