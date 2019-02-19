@@ -72,7 +72,7 @@
     "tslib": "^1.5.0",
     "typestyle": "^2.0.0",
     "vue": "^2.5.17",
-    "vue-class-component": "^6.3.2",
+    "vue-class-component": "^7.0.0",
     "vue-property-decorator": "^7.2.0",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
