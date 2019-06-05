@@ -92,7 +92,7 @@
     "babel-preset-vue-app": "^2.0.0",
     "brotli-webpack-plugin": "^1.0.0",
     "bundlesize": "^0.17.0",
-    "compression-webpack-plugin": "^2.0.0",
+    "compression-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.0.0",
     "cssnano": "^4.1.7",
