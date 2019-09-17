@@ -65,7 +65,7 @@
     "@types/node": "^10.12.7",
     "@types/puppeteer": "^1.10.0",
     "core-js": "^2.5.1",
-    "cross-env": "^5.1.4",
+    "cross-env": "^6.0.0",
     "element-ui": "^2.4.9",
     "es6-promise": "^4.2.5",
     "ts-node": "^7.0.1",
