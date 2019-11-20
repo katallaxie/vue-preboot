@@ -63,7 +63,7 @@
   "dependencies": {
     "@andersnormal/fluffy": "^1.2.2",
     "@types/node": "^10.12.7",
-    "@types/puppeteer": "^1.10.0",
+    "@types/puppeteer": "^2.0.0",
     "core-js": "^2.5.1",
     "cross-env": "^5.1.4",
     "element-ui": "^2.4.9",
