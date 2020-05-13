@@ -69,7 +69,7 @@
     "element-ui": "^2.4.9",
     "es6-promise": "^4.2.5",
     "ts-node": "^7.0.1",
-    "tslib": "^1.5.0",
+    "tslib": "^2.0.0",
     "typestyle": "^2.0.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.3.2",
