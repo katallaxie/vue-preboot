@@ -76,6 +76,7 @@ export interface WebpackLoader {
 export interface DefaultLoaders {
   tsLintLoader?: WebpackLoader;
   sourceMapLoader?: WebpackLoader;
+  jsxLoader?: WebpackLoader;
   tsLoader?: WebpackLoader;
   vueLoader?: WebpackLoader;
   cssLoader?: WebpackLoader;

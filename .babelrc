@@ -1,13 +1,20 @@
 {
   "presets": [
-    "vue-app", [
-      "babel-preset-env",
-      {
-        "modules": false
-      }
-    ]
+    "@vue/babel-preset-app"
   ],
-  "plugins": ["transform-object-rest-spread",
+  "plugins": [
+    [
+      "@babel/proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
     "jsx-v-model",
     [
       "component",
